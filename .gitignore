@@ -1,0 +1,10 @@
+.env
+.idea
+
+# We do not want to have these directories committed.
+assets/*
+conf/*
+
+# However, they need to exist.
+!assets/.gitkeep
+!conf/README.md

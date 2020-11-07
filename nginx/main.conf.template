@@ -1,0 +1,69 @@
+server {
+  server_name ${FQDN};
+  listen 80;
+
+  location /conf {
+    alias /conf;
+  }
+}
+
+server {
+  server_name url1.${FQDN};
+
+  location /intro {
+    alias /assets/normal-intro;
+  }
+
+  location ~ /wall/(.*img) {
+    alias /assets/normal-wall/$1;
+  }
+
+  location /list/category/img {
+    alias /assets/normal-category;
+  }
+
+  # We only want to capture movie URLs ending with img or mov.
+  location ~ ^/movie/(.*(img|mov)) {
+    alias /assets/movies/$1;
+  }
+
+  location / {
+      proxy_pass http://room_server:5000/url1/;
+  }
+}
+
+server {
+  server_name url2.${FQDN};
+
+ location / {
+     proxy_pass http://room_server:5000/url2/;
+ }
+}
+
+server {
+  server_name url3.${FQDN};
+
+  location /pay/intro {
+    alias /assets/pay-intro;
+  }
+
+  location ~ /pay/wall/(.*img) {
+    alias /assets/pay-wall/$1;
+  }
+
+  location /pay/list/category/img {
+    alias /assets/pay-category;
+  }
+
+  location / {
+      proxy_pass http://room_server:5000/url3/;
+  }
+}
+
+server {
+  server_name shop.${FQDN};
+  listen 80;
+
+  # TODO
+  return 404;
+}

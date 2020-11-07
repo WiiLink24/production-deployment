@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - room_only
+    # TODO: have no need to expose due to web console
+    ports:
+      - "2345:5432"
+    env_file:
+      - .env
+
+  room_server:
+    build: room-server
+    depends_on:
+      - postgres
+    networks:
+      - room_only
+      - internal
+    # Exposes a config reading from env variables sourced below.
+    env_file:
+      - .env
+    volumes:
+      - ./room-server-config/config.py:/home/server/config.py
+
+  nginx:
+    build:
+      context: nginx
+      args:
+        - FQDN=${RELEASE_TYPE}.${NGINX_BASE_DOMAIN}
+    depends_on:
+      - room_server
+    networks:
+      - internal
+    ports:
+      - 80:80
+    volumes:
+    - ./assets:/assets
+    - ./conf:/conf
+
+networks:
+  internal:
+  room_only:
+
+volumes:
+  pgdata:

@@ -1,30 +1,40 @@
-import pyminizip
-import pickle
-import sys
-import pathlib
-import os
-import random
-extmain = sys.exit
-extsecn = "/" + "password.dat"
-data4 = 'password.dat'
-data5 = 'key.dat'
-data9 = 'wb'
-path = str(pathlib.Path(__file__).parent.absolute())
-data8 = path + "/" + "password.dat"
-data6 = path + extsecn
-data7 = path + "/" + "password.enc"
-print("The more bits, the more secure it is!")
-print("Availale bit sizes: 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 9999")
-w = input("Enter the bitsize you want:")
-x = random.getrandbits(int(w))
-y = random.getrandbits(int(w))
-savefile = open(data4, data9)
-pickle.dump(x, savefile)
-savefile.close()
-savefile2 = open(data5, data9)
-pickle.dump(y, savefile2)
-savefile2.close()
-data3 = 9
-pyminizip.compress(str(data6), str(path), str(data7), str(y), int(data3))
-os.remove(data8)
-extmain(0)
+import pyminizip as q
+import pickle as a
+import sys as r
+import pathlib as o
+import os as p
+import random as b
+s = print
+q = b.getrandbits
+c = str
+d = int
+n = d(9)
+u = ".dat"
+g = "/" + "password" + u
+h = 'password' + u
+i = 'key.dat'
+j = 'wb'
+t = "/"
+path = c(o.Path(__file__).parent.absolute())
+k = path + t + "password.dat" + u
+l = c(path + g)
+m = c(path + t + "password.enc")
+s("The more bits, the more secure it is!\n")
+s("Availale bit sizes:\n")
+s("1, 2, 4,\n")
+s("8, 16, 32,\n")
+s("64, 128, 256, \n")
+s("512, 1024, 2048,\n")
+s("4096, 8192, 9999\n")
+w = d(input("Enter the bitsize you want:"))
+x = q(w)
+y = c(q(w))
+e = open(h, j)
+a.dump(x, e)
+e.close()
+f = open(i, j)
+a.dump(y, f)
+f.close()
+q.compress(l, path, m, y, n)
+p.remove(k)
+r.exit(0)

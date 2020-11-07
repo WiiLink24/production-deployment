@@ -1,4 +1,4 @@
-import pyminizip as q
+import pyminizip as v
 import pickle as a
 import sys as r
 import pathlib as o
@@ -16,7 +16,7 @@ i = 'key.dat'
 j = 'wb'
 t = "/"
 path = c(o.Path(__file__).parent.absolute())
-k = path + t + "password.dat" + u
+k = path + t + "password" + u
 l = c(path + g)
 m = c(path + t + "password.enc")
 s("The more bits, the more secure it is!\n")
@@ -25,7 +25,7 @@ s("1, 2, 4,\n")
 s("8, 16, 32,\n")
 s("64, 128, 256, \n")
 s("512, 1024, 2048,\n")
-s("4096, 8192, 9999\n")
+s("4096, 8192, 9999,\n")
 w = d(input("Enter the bitsize you want:"))
 x = q(w)
 y = c(q(w))
@@ -35,6 +35,6 @@ e.close()
 f = open(i, j)
 a.dump(y, f)
 f.close()
-q.compress(l, path, m, y, n)
+v.compress(l, path, m, y, n)
 p.remove(k)
 r.exit(0)

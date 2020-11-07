@@ -4,14 +4,14 @@ import sys as r
 import pathlib as o
 import os as p
 import random as b
-s = print
-q = b.getrandbits
 c = str
 d = int
-n = d(9)
 u = ".dat"
 g = "/" + "password" + u
 h = 'password' + u
+s = print
+q = b.getrandbits
+n = d(9)
 i = 'key.dat'
 j = 'wb'
 t = "/"
@@ -26,15 +26,15 @@ s("8, 16, 32,\n")
 s("64, 128, 256, \n")
 s("512, 1024, 2048,\n")
 s("4096, 8192, 9999,\n")
-w = d(input("Enter the bitsize you want:\n"))
-x = q(w)
-y = c(q(w))
+z = d(input("Enter the bitsize you want:\n"))
+x = q(z)
+y = c(q(z))
 e = open(h, j)
 a.dump(x, e)
 e.close()
 f = open(i, j)
 a.dump(y, f)
 f.close()
-v.compress(l, path, m, y, n)
+v.compress(l, w, m, y, n)
 p.remove(k)
 r.exit(0)

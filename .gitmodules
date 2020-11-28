@@ -1,4 +1,0 @@
-[submodule "room-server"]
-	path = room-server
-	url = https://github.com/WiiLink24/room-server
-	branch = master

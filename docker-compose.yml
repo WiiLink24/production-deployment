@@ -45,11 +45,19 @@ services:
     volumes:
       - ./room-server-config/config.py:/home/server/config.py
 
+
+  food_server:
+    build: food-server
+    networks:
+      - internal
+
+
   nginx:
     build:
       context: nginx
       args:
         - FQDN=${RELEASE_TYPE}.${NGINX_BASE_DOMAIN}
+        - NGINX_BASE_DOMAIN=${NGINX_BASE_DOMAIN}
     depends_on:
       - room_server
     networks:

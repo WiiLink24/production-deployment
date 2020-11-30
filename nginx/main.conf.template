@@ -28,7 +28,7 @@ server {
   }
 
   location ~ ^/special/(\d+)/img/(.*(img)) {
-    alias /assets/movies/special-$1;
+    alias /assets/special-$1/$2;
   }
 
   location / {

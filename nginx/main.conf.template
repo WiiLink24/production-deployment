@@ -27,6 +27,10 @@ server {
     alias /assets/movies/$1;
   }
 
+  location ~ ^/special/(\d+)/img/(.*(img)) {
+    alias /assets/movies/special-$1;
+  }
+
   location / {
       proxy_pass http://room_server:5000/url1/;
   }

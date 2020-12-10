@@ -23,8 +23,12 @@ server {
   }
 
   # We only want to capture movie URLs ending with img or mov.
-  location ~ ^/movie/(.*(img|mov)) {
-    alias /assets/movies/$1;
+  location ~ ^/movie/(.*)/(\d+)\.img {
+    alias /assets/movies/$1/$2.img;
+  }
+
+  location ~ ^/movie/(.*)/(\d+)-(L|H)\.mov {
+    alias /assets/movies/$1/$2-H.mov;
   }
 
   location ~ ^/special/(\d+)/img/(.*(img)) {

@@ -9,7 +9,7 @@ services:
       - room_only
     # TODO: have no need to expose due to web console
     ports:
-      - "2345:5432"
+      - "127.0.0.1:2345:5432"
     env_file:
       - .env
 
@@ -45,6 +45,7 @@ services:
     volumes:
       - ./room-server-config/config.py:/home/server/config.py
       # Necessary to add new videos.
+      - ./conf/eula.txt:/home/server/conf/eula.txt
       - ./assets:/home/server/assets
 
 
@@ -65,7 +66,7 @@ services:
     networks:
       - internal
     ports:
-      - 80:80
+      - "127.0.0.1:80:80"
     volumes:
     - ./assets:/assets
     - ./conf:/conf

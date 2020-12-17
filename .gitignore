@@ -2,11 +2,10 @@
 .idea
 
 # We do not want to have these directories committed.
-assets/*
+assets
 conf/*
 food-server
 room-server
 
-# However, they need to exist.
-!assets/.gitkeep
+# However, this needs to exist.
 !conf/README.md

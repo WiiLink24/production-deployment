@@ -1,9 +1,14 @@
 server {
   server_name ${FQDN};
   listen 80;
+  client_max_body_size 200M;
 
   location /conf {
     alias /conf;
+  }
+
+  location /theunderground/ {
+    proxy_pass http://room_server:5000/theunderground/;
   }
 }
 

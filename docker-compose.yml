@@ -14,7 +14,7 @@ services:
       - .env
 
   elastic:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.5.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
     environment:
       - node.name=elastic
       - bootstrap.memory_lock=true
@@ -44,6 +44,8 @@ services:
       - .env
     volumes:
       - ./room-server-config/config.py:/home/server/config.py
+      # Necessary to add new videos.
+      - ./assets:/home/server/assets
 
 
   food_server:

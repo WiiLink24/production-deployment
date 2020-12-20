@@ -44,6 +44,10 @@ server {
     alias /assets/special-$1/$2;
   }
 
+  location /voice {
+    alias /assets/voice;
+  }
+
   location / {
       proxy_pass http://room_server:5000/url1/;
   }

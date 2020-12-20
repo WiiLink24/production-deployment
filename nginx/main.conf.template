@@ -44,6 +44,10 @@ server {
     alias /assets/special-$1/$2;
   }
 
+  location /dsmov {
+    alias /assets/dsmov;
+  }
+
   location /voice {
     alias /assets/voice;
   }

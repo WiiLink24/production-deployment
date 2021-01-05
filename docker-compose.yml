@@ -56,20 +56,17 @@ services:
 
 
   nginx:
-    build:
-      context: nginx
-      args:
-        - FQDN=${RELEASE_TYPE}.${NGINX_BASE_DOMAIN}
-        - NGINX_BASE_DOMAIN=${NGINX_BASE_DOMAIN}
+    build: nginx/
     depends_on:
       - room_server
     networks:
       - internal
     ports:
       - "127.0.0.1:80:80"
+    env_file:
+      - .env
     volumes:
     - ./assets:/assets
-    - ./conf:/conf
 
 networks:
   elastic:

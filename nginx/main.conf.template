@@ -1,19 +1,15 @@
 server {
-  server_name ${FQDN};
+  server_name ${NGINX_BASE_DOMAIN};
   listen 80;
   client_max_body_size 200M;
 
-  location /conf {
-    alias /conf;
-  }
-
-  location /theunderground/ {
-    proxy_pass http://room_server:5000/theunderground/;
+  location / {
+    proxy_pass http://room_server:5000/;
   }
 }
 
 server {
-  server_name url1.${FQDN};
+  server_name url1.${NGINX_BASE_DOMAIN};
 
   location ~ /conf/brtest-(H|L)\.mov {
     alias /assets/conf/brtest-H.mov;
@@ -58,7 +54,7 @@ server {
 }
 
 server {
-  server_name url2.${FQDN};
+  server_name url2.${NGINX_BASE_DOMAIN};
 
  location / {
      proxy_pass http://room_server:5000/url2/;
@@ -66,7 +62,7 @@ server {
 }
 
 server {
-  server_name url3.${FQDN};
+  server_name url3.${NGINX_BASE_DOMAIN};
 
   location /pay/intro {
     alias /assets/pay-intro;
@@ -86,7 +82,7 @@ server {
 }
 
 server {
-  server_name shop.${FQDN};
+  server_name shop.${NGINX_BASE_DOMAIN};
   listen 80;
 
   # TODO

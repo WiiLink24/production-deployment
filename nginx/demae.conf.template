@@ -1,5 +1,5 @@
 server {
-  server_name demae.${NGINX_BASE_DOMAIN};
+  server_name ${DEMAE_DOMAIN};
 
   location / {
       proxy_pass http://food_server:5000/;

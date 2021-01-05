@@ -15,6 +15,10 @@ server {
     alias /assets/conf/brtest-H.mov;
   }
 
+  location /coupon {
+    alias /assets/coupon;
+  }
+
   location /intro {
     alias /assets/normal-intro;
   }
@@ -74,6 +78,10 @@ server {
 
   location /pay/list/category/img {
     alias /assets/pay-category;
+  }
+
+  location /pay/movie {
+    alias /assets/pay-movie;
   }
 
   location / {

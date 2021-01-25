@@ -59,6 +59,8 @@ services:
     build: cam-server
     networks:
       - internal
+    volumes:
+      - ./templates:/home/server/templates
 
 
   nginx:

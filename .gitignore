@@ -4,6 +4,7 @@
 # We do not want to have these directories committed.
 assets
 conf/*
+cam-server
 food-server
 room-server
 

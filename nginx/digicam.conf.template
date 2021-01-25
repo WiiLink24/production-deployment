@@ -1,0 +1,7 @@
+server {
+  server_name ${DIGICAM_DOMAIN};
+
+  location / {
+      proxy_pass http://cam_server:5000/;
+  }
+}

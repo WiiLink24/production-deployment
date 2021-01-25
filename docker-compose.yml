@@ -55,6 +55,12 @@ services:
       - internal
 
 
+  cam_server:
+    build: cam-server
+    networks:
+      - internal
+
+
   nginx:
     build: nginx/
     depends_on:

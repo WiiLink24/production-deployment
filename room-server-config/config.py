@@ -5,7 +5,7 @@ import os
 db_url = f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@postgres/{os.getenv('POSTGRES_DB')}"
 
 # This option should remain as-is without configuration if the default Compose definition is being used.
-elasticsearch_url = "elastic:9200"
+elasticsearch_url = "https://elastic:9200"
 elasticsearch_user = os.getenv('ELASTIC_USER')
 elasticsearch_pass = os.getenv('ELASTIC_PASS')
 

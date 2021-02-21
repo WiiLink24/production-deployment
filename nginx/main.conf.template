@@ -81,7 +81,7 @@ server {
   }
 
   # We only want to capture movie URLs ending with img or mov.
-  location ~ ^/pay/movie/(.*)/(\d+)/(\d+)\.img {
+  location ~ ^/pay/movie/(.*)/(\d+)/(.*)\.img {
     alias /assets/pay-movie/$1/$2/$3.img;
   }
 

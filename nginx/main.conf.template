@@ -85,7 +85,7 @@ server {
     alias /assets/pay-movie/$1/$2/$3.img;
   }
 
-  location ~ ^/pay/movie/(.*)/(\d+)/(\d+)-(L|H)\.smo {
+  location ~ ^/pay/movie/(.*)/(\d+)/(.*)-(L|H)\.smo {
     alias /assets/pay-movie/$1/$2/$3-H.smo;
   }
 

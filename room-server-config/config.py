@@ -6,11 +6,11 @@ db_url = f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWO
 
 # This option should remain as-is without configuration if the default Compose definition is being used.
 elasticsearch_url = "https://elastic:9200"
-elasticsearch_user = os.getenv('ELASTIC_USER')
-elasticsearch_pass = os.getenv('ELASTIC_PASS')
+elasticsearch_user = os.getenv("ELASTIC_USER")
+elasticsearch_pass = os.getenv("ELASTIC_PASS")
 
 # Used as the base domain within first.bin.
-root_domain = os.getenv('NGINX_BASE_DOMAIN')
+root_domain = os.getenv("NGINX_BASE_DOMAIN")
 # TODO: make toggleable once possible
 root_https_enabled = False
 # We assume we are being proxied with the default Compose definition.

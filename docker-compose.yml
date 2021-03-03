@@ -6,7 +6,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - room_only
+      - db_access
     # TODO: have no need to expose due to web console
     ports:
       - "127.0.0.1:2345:5432"
@@ -38,7 +38,7 @@ services:
     networks:
       - elastic
       - internal
-      - room_only
+      - db_access
     # Exposes a config reading from env variables sourced below.
     env_file:
       - .env
@@ -57,10 +57,18 @@ services:
 
   cam_server:
     build: cam-server
+    depends_on:
+      - postgres
     networks:
       - internal
+      - db_access
+    env_file:
+      - .env
     volumes:
+      - ./cam-server-config/config.py:/home/server/config.py
       - ./templates:/home/server/templates
+      # Used for order file storage.
+      - ./orders:/home/server/orders
 
 
   nginx:
@@ -79,7 +87,7 @@ services:
 networks:
   elastic:
   internal:
-  room_only:
+  db_access:
 
 volumes:
   esdata:

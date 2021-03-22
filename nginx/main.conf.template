@@ -19,6 +19,10 @@ server {
     alias /assets/coupon;
   }
 
+  location /urllink {
+    alias /assets/urllink;
+  }
+
   location /intro {
     alias /assets/normal-intro;
   }

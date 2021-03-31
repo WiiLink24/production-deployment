@@ -1,5 +1,8 @@
 server {
   server_name ${DIGICAM_DOMAIN};
+  listen 80;
+  client_max_body_size 25M;
+
 
   location / {
       proxy_pass http://cam_server:5000/;

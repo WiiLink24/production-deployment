@@ -64,9 +64,10 @@ server {
 server {
   server_name url2.${NGINX_BASE_DOMAIN};
 
- location / {
+  location / {
      proxy_pass http://room_server:5000/url2/;
- }
+     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
 }
 
 server {

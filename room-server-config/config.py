@@ -23,3 +23,7 @@ secret_key = os.getenv("ROOM_SECRET_KEY")
 
 # We use 2 servers, so we disable this here.
 video_deletion_enabled = False
+
+# We assume we are using localized time.
+use_localized_time=False
+maxmind_db_location = os.getenv("MAXMIND_DB_PATH")

@@ -25,5 +25,5 @@ secret_key = os.getenv("ROOM_SECRET_KEY")
 video_deletion_enabled = False
 
 # We assume we are using localized time.
-use_localized_time=False
+use_localized_time=True
 maxmind_db_location = os.getenv("MAXMIND_DB_PATH")

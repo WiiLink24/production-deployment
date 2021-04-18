@@ -95,7 +95,7 @@ server {
   }
 
   location / {
-      proxy_pass http://room_server:5000/url3/;
+    proxy_pass http://room_server:5000/url3/;
   }
 }
 
@@ -103,6 +103,7 @@ server {
   server_name shop.${NGINX_BASE_DOMAIN};
   listen 80;
 
-  # TODO
-  return 404;
+  location / {
+    root /assets/shop;
+  }
 }

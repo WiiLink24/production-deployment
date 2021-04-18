@@ -14,7 +14,7 @@ services:
       - .env
 
   elastic:
-    image: amazon/opendistro-for-elasticsearch:1.12.0
+    image: amazon/opendistro-for-elasticsearch:1.13.2
     environment:
       - node.name=elastic
       - bootstrap.memory_lock=true
@@ -43,9 +43,9 @@ services:
     env_file:
       - .env
     volumes:
-      - ./room-server-config/config.py:/home/server/config.py
+      - ./config/room-server/config.py:/home/server/config.py
       # Necessary to add new videos.
-      - ./conf/eula.txt:/home/server/conf/eula.txt
+      - ./config/room-server/eula.txt:/home/server/conf/eula.txt
       - ./assets:/home/server/assets
 
 
@@ -65,7 +65,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ./cam-server-config/config.py:/home/server/config.py
+      - ./config/cam-server/config.py:/home/server/config.py
       - ./templates:/home/server/templates
       # Used for order file storage.
       - ./orders:/home/server/orders

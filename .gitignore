@@ -3,11 +3,10 @@
 
 # We do not want to have these directories committed.
 assets
-conf/*
 templates
 
-# However, this needs to exist.
-!conf/README.md
+# Nor do we want our user-configured EULA to be tracked.
+/config/room-server/eula.txt
 
 # Similarly, we do not want our cloned source tracked.
 cam-server

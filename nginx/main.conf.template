@@ -19,6 +19,11 @@ server {
     alias /assets/coupon;
   }
 
+  # If we're serving a movie, upgrade to high quality.
+  location ~ ^/urllink/(\d+)-(L|H)\.mov {
+    alias /assets/urllink/$1-H.mov;
+  }
+
   location /urllink {
     alias /assets/urllink;
   }

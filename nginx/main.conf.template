@@ -15,17 +15,14 @@ server {
     alias /assets/conf/brtest-H.mov;
   }
 
-  location /coupon {
-    alias /assets/coupon;
+  # Serve Room assets
+  location /(urllink|delivery|coupon|picture|enqmov) {
+    alias /assets/$1;
   }
 
   # If we're serving a movie, upgrade to high quality.
-  location ~ ^/urllink/(\d+)-(L|H)\.mov {
-    alias /assets/urllink/$1-H.mov;
-  }
-
-  location /urllink {
-    alias /assets/urllink;
+  location ~ ^/(urllink|delivery|coupon|picture|enqmov)/(\d+)-(L|H)\.mov {
+    alias /assets/$1/$2-H.mov;
   }
 
   location /intro {

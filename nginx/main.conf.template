@@ -15,8 +15,13 @@ server {
     alias /assets/conf/brtest-H.mov;
   }
 
-  # Serve Room assets
-  location /(urllink|delivery|coupon|picture|enqmov) {
+  # Ensure XML is passed to server
+  location ~ /(urllink|delivery|coupon|picture|enqmov)/(.*).xml {
+    proxy_pass http://room-server:5000/url1/$1/$2.xml;
+  }
+
+  # Otherwise, serve assets as-is.
+  location ~ /(urllink|delivery|coupon|picture|enqmov) {
     alias /assets/$1;
   }
 

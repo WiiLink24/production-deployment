@@ -27,7 +27,7 @@ server {
 
   # Otherwise, serve room assets as-is.
   location ~ /(urllink|delivery|coupon|picture|enqmov)/(.*) {
-    root /assets/$1/$2;
+    alias /assets/$1/$2;
   }
 
   location /intro {

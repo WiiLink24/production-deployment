@@ -15,19 +15,19 @@ server {
     alias /assets/conf/brtest-H.mov;
   }
 
-  # Ensure XML is passed to server
+  # Ensure room XML is passed to server.
   location ~ /(urllink|delivery|coupon|picture|enqmov)/(.*).xml {
     proxy_pass http://room_server:5000/url1/$1/$2.xml;
-  }
-
-  # Otherwise, serve assets as-is.
-  location ~ /(urllink|delivery|coupon|picture|enqmov) {
-    alias /assets/$1;
   }
 
   # If we're serving a movie, upgrade to high quality.
   location ~ ^/(urllink|delivery|coupon|picture|enqmov)/(\d+)-(L|H)\.mov {
     alias /assets/$1/$2-H.mov;
+  }
+
+  # Otherwise, serve room assets as-is.
+  location ~ /(urllink|delivery|coupon|picture|enqmov)/(.*) {
+    root /assets/$1/$2;
   }
 
   location /intro {

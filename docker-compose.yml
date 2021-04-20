@@ -45,7 +45,7 @@ services:
       - ./config/room-server/eula.txt:/home/server/conf/eula.txt
       - ./assets:/home/server/assets
       # Necessary for Elasticsearch operation.
-      - ./config/elastic/elastic-root-ca.pem:/home/server/conf/elastic-root-ca.pem
+      - ./config/elastic/elastic-root-ca-bind.pem:/home/server/conf/elastic-root-ca.pem
 
 
   food_server:

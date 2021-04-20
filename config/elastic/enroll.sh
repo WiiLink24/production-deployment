@@ -16,4 +16,8 @@ openssl x509 -req -in elastic-node.csr -CA elastic-root-ca.pem -CAkey elastic-ro
 
 chmod 0600 elastic-node.pem elastic-node.key elastic-root-ca.pem
 
+# Necessary for room-server.
+cp elastic-root-ca.pem elastic-root-ca-bind.pem
+chmod 0777 elastic-root-ca-bind.pem
+
 printf "\nDone, certificates prepared.\n"

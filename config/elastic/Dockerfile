@@ -2,8 +2,9 @@ FROM amazon/opendistro-for-elasticsearch:1.13.2
 
 USER root
 
-# Remove all demo certificates.
-RUN rm /usr/share/elasticsearch/config/*.pem
+# Remove all demo certificates if possible.
+# Some versions have demo certificates for whatever reason.
+RUN if [[ -f /usr/share/elasticsearch/config/kirk.pem ]]; then rm /usr/share/elasticsearch/config/*.pem; fi
 
 # Prefer our own.
 COPY elastic-node.key /usr/share/elasticsearch/config

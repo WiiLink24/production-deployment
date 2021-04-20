@@ -16,7 +16,4 @@ openssl x509 -req -in elastic-node.csr -CA elastic-root-ca.pem -CAkey elastic-ro
 
 chmod 0600 elastic-node.pem elastic-node.key elastic-root-ca.pem
 
-# Ensure these files are accessible by containers.
-chown 1000:1000 *.pem *.key
-
 printf "\nDone, certificates prepared.\n"

@@ -16,6 +16,7 @@ services:
   elastic:
     image: amazon/opendistro-for-elasticsearch:1.13.2
     environment:
+      - cluster.name=elastic
       - node.name=elastic
       - bootstrap.memory_lock=true
       - discovery.type=single-node
@@ -26,6 +27,12 @@ services:
         hard: -1
     volumes:
       - esdata:/usr/share/elasticsearch/data
+      # We apparently must overwrite the demo certificates in order to not have mysterious errors on bring up.
+      # We could most likely create our own image without these files but this will suffice for now.
+      # Relevant: https://discuss.opendistrocommunity.dev/t/demo-certificates-found/345/2
+      - ./config/elastic/elastic-node.pem:/usr/share/elasticsearch/config/esnode.pem
+      - ./config/elastic/elastic-node.key:/usr/share/elasticsearch/config/esnode-key.pem
+      - ./config/elastic/elastic-root-ca.pem:/usr/share/elasticsearch/config/root-ca.pem
     networks:
       - elastic
 
@@ -47,6 +54,8 @@ services:
       # Necessary to add new videos.
       - ./config/room-server/eula.txt:/home/server/conf/eula.txt
       - ./assets:/home/server/assets
+      # Necessary for Elasticsearch operation.
+      - ./config/elastic/elastic-root-ca.pem:/home/server/conf/elastic-root-ca.pem
 
 
   food_server:

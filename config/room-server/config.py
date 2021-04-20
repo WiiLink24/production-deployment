@@ -8,6 +8,7 @@ db_url = f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWO
 elasticsearch_url = "https://elastic:9200"
 elasticsearch_user = os.getenv("ELASTIC_USER")
 elasticsearch_pass = os.getenv("ELASTIC_PASS")
+elasticsearch_ca_path = "conf/elastic-root-ca.pem"
 
 # Used as the base domain within first.bin.
 root_domain = os.getenv("NGINX_BASE_DOMAIN")
@@ -25,5 +26,5 @@ secret_key = os.getenv("ROOM_SECRET_KEY")
 video_deletion_enabled = False
 
 # We assume we are using localized time.
-use_localized_time=True
+use_localized_time = True
 maxmind_db_location = os.getenv("MAXMIND_DB_PATH")

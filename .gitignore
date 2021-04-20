@@ -1,14 +1,19 @@
-.env
-.idea
+/.env
+/.idea
 
 # We do not want to have these directories committed.
-assets
-templates
+/assets
+/templates
 
 # Nor do we want our user-configured EULA to be tracked.
 /config/room-server/eula.txt
 
+# Or certificates.
+!/config/elastic/README.md
+!/config/elastic/enroll.sh
+/config/elastic/
+
 # Similarly, we do not want our cloned source tracked.
-cam-server
-food-server
-room-server
+/cam-server
+/food-server
+/room-server

@@ -10,6 +10,8 @@
 
 # Or certificates.
 !/config/elastic/README.md
+!/config/elastic/Dockerfile
+!/config/elastic/elasticsearch.yml
 !/config/elastic/enroll.sh
 /config/elastic/
 

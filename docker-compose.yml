@@ -14,12 +14,8 @@ services:
       - .env
 
   elastic:
-    image: amazon/opendistro-for-elasticsearch:1.13.2
+    build: config/elastic
     environment:
-      - cluster.name=elastic
-      - node.name=elastic
-      - bootstrap.memory_lock=true
-      - discovery.type=single-node
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
@@ -27,12 +23,6 @@ services:
         hard: -1
     volumes:
       - esdata:/usr/share/elasticsearch/data
-      # We apparently must overwrite the demo certificates in order to not have mysterious errors on bring up.
-      # We could most likely create our own image without these files but this will suffice for now.
-      # Relevant: https://discuss.opendistrocommunity.dev/t/demo-certificates-found/345/2
-      - ./config/elastic/elastic-node.pem:/usr/share/elasticsearch/config/esnode.pem
-      - ./config/elastic/elastic-node.key:/usr/share/elasticsearch/config/esnode-key.pem
-      - ./config/elastic/elastic-root-ca.pem:/usr/share/elasticsearch/config/root-ca.pem
     networks:
       - elastic
 

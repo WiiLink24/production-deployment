@@ -22,8 +22,7 @@ root_separate_subdomain = True
 underground_enabled = os.getenv("ROOM_UNDERGROUND_ENABLED") == "1"
 secret_key = os.getenv("ROOM_SECRET_KEY")
 
-# We use 2 servers, so we disable this here.
-video_deletion_enabled = False
+video_deletion_enabled = True
 
 # We assume we are using localized time.
 use_localized_time = True

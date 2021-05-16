@@ -99,7 +99,7 @@ services:
       - .env
     volumes:
     - ./assets:/assets
-    - ./digicard:/digicard
+    - ./Digicard:/digicard
 
 networks:
   elastic:

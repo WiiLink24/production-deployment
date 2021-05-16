@@ -72,6 +72,21 @@ services:
       - ./orders:/home/server/orders
 
 
+  digicard:
+    build: Digicard
+    depends_on:
+      - postgres
+      - cam_server
+    networks:
+      - internal
+      - db_access
+    env_file:
+      - .env
+    volumes:
+      - ./config/digicard/config.py:/home/server/config.py
+      # Used to siphon stashed order file storage.
+      - ./orders:/home/server/orders
+
   nginx:
     build: nginx/
     depends_on:

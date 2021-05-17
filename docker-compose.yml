@@ -86,6 +86,7 @@ services:
       - ./config/digicard/config.py:/home/server/config.py
       # Used to siphon stashed order file storage.
       - ./orders:/home/server/orders
+      - ./cards:/home/server/cards
 
   nginx:
     build: nginx/

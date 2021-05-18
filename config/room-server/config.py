@@ -27,3 +27,7 @@ video_deletion_enabled = True
 # We assume we are using localized time.
 use_localized_time = True
 maxmind_db_location = os.getenv("MAXMIND_DB_PATH")
+
+# Sentry configuration for error logging.
+use_sentry = True
+sentry_dsn = os.getenv("ROOM_SENTRY_DSN")

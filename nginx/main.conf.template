@@ -84,7 +84,7 @@ server {
     alias /assets/pay-intro;
   }
 
-  location ~ /pay/wall/(.*img) {
+  location ~ /pay/wall/(.*img|.*emo) {
     alias /assets/pay-wall/$1;
   }
 

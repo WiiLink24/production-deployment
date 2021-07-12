@@ -2,7 +2,7 @@
 import os
 
 # Primary config for room-server
-db_url = f"postgresql://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@postgres/{os.getenv('POSTGRES_DB')}"
+db_url = f"postgresql://{os.getenv('ROOM_DB_USER')}:{os.getenv('ROOM_DB_PASSWORD')}@{os.getenv('POSTGRES_HOST')}/{os.getenv('ROOM_DB_DATABASE')}"
 
 # This option should remain as-is without configuration if the default Compose definition is being used.
 elasticsearch_url = "https://elastic:9200"

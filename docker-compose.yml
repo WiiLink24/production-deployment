@@ -13,27 +13,11 @@ services:
     env_file:
       - .env
 
-  elastic:
-    build: config/elastic
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ulimits:
-      memlock:
-        soft: -1
-        hard: -1
-    volumes:
-      - esdata:/usr/share/elasticsearch/data
-    networks:
-      - elastic
-
-
   room_server:
     build: room-server
     depends_on:
       - postgres
-      - elastic
     networks:
-      - elastic
       - internal
       - db_access
     # Exposes a config reading from env variables sourced below.
@@ -44,8 +28,6 @@ services:
       # Necessary to add new videos.
       - ./config/room-server/eula.txt:/home/server/conf/eula.txt
       - ./assets:/home/server/assets
-      # Necessary for Elasticsearch operation.
-      - ./config/elastic/elastic-root-ca-bind.pem:/home/server/conf/elastic-root-ca.pem
 
 
   food_server:
@@ -103,10 +85,8 @@ services:
     - ./Digicard:/digicard
 
 networks:
-  elastic:
   internal:
   db_access:
 
 volumes:
-  esdata:
   pgdata:

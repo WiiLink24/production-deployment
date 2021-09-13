@@ -31,7 +31,7 @@ services:
 
 
   food_server:
-    build: room-server
+    build: food-server
     depends_on:
       - postgres
     networks:

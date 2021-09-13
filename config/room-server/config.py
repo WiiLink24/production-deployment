@@ -13,7 +13,6 @@ root_separate_subdomain = True
 
 
 # Used to secure the web panel.
-underground_enabled = os.getenv("ROOM_UNDERGROUND_ENABLED") == "1"
 secret_key = os.getenv("ROOM_SECRET_KEY")
 
 video_deletion_enabled = True

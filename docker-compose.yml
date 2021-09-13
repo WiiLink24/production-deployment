@@ -31,12 +31,18 @@ services:
 
 
   food_server:
-    build: food-server
+    build: room-server
     depends_on:
       - postgres
     networks:
       - internal
-
+      - db_access
+    # Exposes a config reading from env variables sourced below.
+    env_file:
+      - .env
+    volumes:
+      - ./config/food-server/config.py:/home/server/config.py
+      - ./food-assets:/home/server/images
 
   cam_server:
     build: cam-server

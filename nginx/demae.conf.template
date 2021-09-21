@@ -1,5 +1,6 @@
 server {
   server_name ${DEMAE_DOMAIN};
+  listen 80;
 
   location / {
       proxy_pass http://food_server:5000/;

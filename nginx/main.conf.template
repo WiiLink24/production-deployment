@@ -51,8 +51,12 @@ server {
     alias /assets/movies/$1/$2-H.mov;
   }
 
+  location ~ ^/special/(\d+)/img/g1234.img {
+    alias /assets/special/$1/parade_banner.jpg;
+  }
+
   location ~ ^/special/(\d+)/img/(.*(img)) {
-    alias /assets/special-$1/$2;
+    alias /assets/special/$1/$2;
   }
 
   location /dsmov {

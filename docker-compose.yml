@@ -89,6 +89,7 @@ services:
     volumes:
     - ./assets:/assets
     - ./Digicard:/digicard
+    - ./food-assets:/food-assets
 
 networks:
   internal:

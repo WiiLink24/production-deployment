@@ -5,4 +5,12 @@ server {
   location / {
       proxy_pass http://food_server:5000/;
   }
+  
+  location ~ /logoimg2/(.*jpg) {
+    alias /images/$1;
+  }
+  
+  location ~ /itemimg/(\d+)/(.*jpg) {
+    alias /images/$1/$2;
+  }
 }

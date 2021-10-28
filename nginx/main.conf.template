@@ -38,10 +38,6 @@ server {
     alias /assets/normal-wall/$1;
   }
   
-  location ~ /wall/(.*mov) {
-    alias /assets/normal-wall/$1;
-  }
-
   location /list/category/img {
     alias /assets/normal-category;
   }

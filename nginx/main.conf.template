@@ -34,7 +34,7 @@ server {
     alias /assets/normal-intro;
   }
 
-  location ~ /wall/(.*img) {
+  location ~ /wall/(.*) {
     alias /assets/normal-wall/$1;
   }
 

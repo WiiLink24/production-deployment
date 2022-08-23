@@ -25,8 +25,7 @@ services:
       - .env
     volumes:
       - ./config/room-server/config.py:/home/server/config.py
-      # Necessary to add new videos.
-      - ./config/room-server/eula.txt:/home/server/conf/eula.txt
+      - ./config/eula.txt:/home/server/conf/eula.txt
       - ./assets:/home/server/assets
 
 
@@ -42,6 +41,7 @@ services:
       - .env
     volumes:
       - ./config/food-server/config.py:/home/server/config.py
+      - ./config/eula.txt:/home/server/conf/eula.txt
       - ./food-assets:/home/server/images
 
   cam_server:

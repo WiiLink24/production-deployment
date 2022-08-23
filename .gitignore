@@ -6,7 +6,7 @@
 /templates
 
 # Nor do we want our user-configured EULA to be tracked.
-/config/room-server/eula.txt
+/config/eula.txt
 
 # Similarly, we do not want our cloned source tracked.
 /cam-server

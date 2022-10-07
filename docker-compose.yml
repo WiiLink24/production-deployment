@@ -26,7 +26,7 @@ services:
     volumes:
       - ./config/room-server/config.py:/home/server/config.py
       - ./config/eula.txt:/home/server/conf/eula.txt
-      - ./assets:/home/server/assets
+      - ./room-assets:/home/server/assets
 
 
   food_server:
@@ -55,9 +55,9 @@ services:
       - .env
     volumes:
       - ./config/cam-server/config.py:/home/server/config.py
-      - ./templates:/home/server/templates
+      - ./cam-templates:/home/server/templates
       # Used for order file storage.
-      - ./orders:/home/server/orders
+      - ./cam-orders:/home/server/orders
 
 
   digicard:
@@ -73,8 +73,8 @@ services:
     volumes:
       - ./config/digicard/config.py:/home/server/config.py
       # Used to siphon stashed order file storage.
-      - ./orders:/home/server/orders
-      - ./cards:/home/server/cards
+      - ./cam-orders:/home/server/orders
+      - ./digicards:/home/server/cards
 
   nginx:
     build: nginx/
@@ -87,7 +87,7 @@ services:
     env_file:
       - .env
     volumes:
-    - ./assets:/assets
+    - ./room-assets:/assets
     - ./Digicard:/digicard
     - ./food-assets:/food-assets
 

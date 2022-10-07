@@ -2,6 +2,7 @@
 # todo:
 # make one postgres container not multiple lmao
 # add room server
+# add beta room server
 # add food server
 # add anything else needed
 # merge to master when its actually ready

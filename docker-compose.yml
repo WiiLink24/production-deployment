@@ -1,3 +1,12 @@
+# current setup that is not super clean but it works
+# todo:
+# make one postgres container not multiple lmao
+# add room server
+# add food server
+# add anything else needed
+# merge to master when its actually ready
+# profit???
+
 version: "3"
 services:
 

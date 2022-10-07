@@ -6,6 +6,7 @@
 # add anything else needed
 # merge to master when its actually ready
 # profit???
+# ps im not using .env for some reason but whatever
 
 version: "3"
 services:

@@ -2,7 +2,7 @@
 An assortment of Compose definitions for production usage.
 
 ### Files
-(To be detirmined, eventually i will update this with a simple README that reflects the new setup)
+(To be determined, eventually i will update this with a simple README that reflects the new setup)
 
 ```
 docker-compose.yml

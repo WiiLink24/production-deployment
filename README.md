@@ -1,6 +1,19 @@
 # production-deployment
 An assortment of Compose definitions for production usage.
 
+### Files
+(To be detirmined, eventually i will update this with a simple README that reflects the new setup)
+
+```
+docker-compose.yml
+```
+This file specifies all of the docker containers that run in a prod environment.
+
+```
+prod.wiilink24.com.conf
+```
+This file contains the NGINX configuration used in a prod environment.
+
 ### Setup
 1. Copy `.env.example` to `.env` and make edits accordingly for the PostgreSQL database's credentials, base domain, and other items.
 2. Ensure assets are present within the `assets` folder for usage with `room-server`.

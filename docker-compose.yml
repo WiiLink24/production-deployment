@@ -1,51 +1,17 @@
-# current setup that is not super clean but it works
-# todo:
-# make one postgres container not multiple lmao
-# add room server
-# add beta room server
-# add food server
-# add anything else needed
-# merge to master when its actually ready
-# profit???
-# ps im not using .env for some reason but whatever
-
 version: "3"
 services:
 
-   room-postgres:
+   postgres:
      image: postgres:11-alpine
      environment:
-       POSTGRES_DB: 
+       POSTGRES_DB: (Enter info in these fields)
        POSTGRES_PASSWORD: 
        POSTGRES_USER: 
      logging:
        driver: "none"
      restart: unless-stopped
      volumes:
-        - "/home/servosmb/Docker/pg-room:/var/lib/postgresql/data"
-
-   beta-room-postgres:
-     image: postgres:11-alpine
-     environment:
-       POSTGRES_DB: 
-       POSTGRES_PASSWORD: 
-       POSTGRES_USER: 
-     logging:
-       driver: "none"
-     restart: unless-stopped
-     volumes:
-        - "/home/servosmb/Docker/pg-beta-room:/var/lib/postgresql/data"
-
-   cam-postgres:
-     image: postgres:11-alpine
-     environment:
-       POSTGRES_DB: 
-       POSTGRES_PASSWORD: 
-       POSTGRES_USER: 
-     logging:
-       driver: "none"
-     restart: unless-stopped
-     volumes:
+        # this path will be different for you
         - "/home/servosmb/Docker/pg-cam:/var/lib/postgresql/data"
    
    cam_server:
@@ -53,9 +19,25 @@ services:
        context: /home/wiilink/prod/cam-server
      ports:
        - "9001:5000"
+     depends_on:
+       - postgres
      volumes:
+       # these paths will be different for you
        - "/home/wiilink/prod/config/cam-server/config.py:/home/server/config.py"
        - "/home/wiilink/prod/cam-orders:/home/server/orders"
        - "/home/wiilink/prod/digicards:/home/server/card"
        - "/home/wiilink/prod/cam-templates:/home/server/templates"
+  
+   room_server:
+     build:
+       context: /home/wiilink/prod/room-server
+     depends_on:
+       - postgres
+     ports:
+       - "9002:5000"
+     volumes:
+       # these paths will be different for you
+       - "/home/wiilink/prod/config/room-server/config.py:/home/server/config.py"
+       - "/home/wiilink/prod/config/eula.example.txt:/home/server/conf/eula.txt"
+       - "/home/wiilink/prod/room-assets:/home/server/assets"
 

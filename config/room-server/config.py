@@ -15,12 +15,15 @@ root_separate_subdomain = True
 # Used to secure the web panel.
 secret_key = os.getenv("ROOM_SECRET_KEY")
 
-video_deletion_enabled = True
-
-# We assume we are using localized time.
-use_localized_time = True
-maxmind_db_location = os.getenv("MAXMIND_DB_PATH")
-
 # Sentry configuration for error logging.
 use_sentry = True
 sentry_dsn = os.getenv("ROOM_SENTRY_DSN")
+
+use_s3 = False
+r2_account_id = os.getenv("R2_ACCOUNT_ID")
+r2_bucket_name = os.getenv("R2_BUCKET_NAME")
+s3_connection_url = os.getenv("S3_CONNECTION_URL")
+s3_access_key_id = os.getenv("S3_ACCESS_KEY_ID")
+s3_secret_access_key = os.getenv("S3_SECRET_ACCESS_KEY")
+
+url1_cdn_url = os.getenv("URL1_CDN_URL")

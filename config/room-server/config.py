@@ -29,3 +29,17 @@ s3_secret_access_key = os.getenv("S3_SECRET_ACCESS_KEY")
 url1_cdn_url = os.getenv("URL1_CDN_URL")
 
 ds_rsa_key_path = os.getenv("DS_RSA_KEY_PATH")
+
+# OpenID Connect configuration
+oidc_client_secrets_json = {
+    "web": {
+        "client_id": os.getenv("ROOM_OIDC_CLIENT_ID"),
+        "client_secret": os.getenv("ROOM_OIDC_CLIENT_SECRET"),
+        "auth_uri": os.getenv("ROOM_OIDC_AUTH_URL"),
+        "token_uri": os.getenv("ROOM_OIDC_TOKEN_URL"),
+        "userinfo_uri": os.getenv("ROOM_OIDC_USERINFO_URL"),
+        "issuer": os.getenv("ROOM_OIDC_ISSUER"),
+        "redirect_uris": [os.getenv("ROOM_OIDC_REDIRECT_URL")],
+    }
+}
+oidc_logout_url = os.getenv("ROOM_OIDC_LOGOUT_URL")

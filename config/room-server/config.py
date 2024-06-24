@@ -43,3 +43,4 @@ oidc_client_secrets_json = {
     }
 }
 oidc_logout_url = os.getenv("ROOM_OIDC_LOGOUT_URL")
+oidc_overwrite_redirect_uri = os.getenv("ROOM_OIDC_REDIRECT_URL")

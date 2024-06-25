@@ -31,6 +31,7 @@ url1_cdn_url = os.getenv("URL1_CDN_URL")
 ds_rsa_key_path = os.getenv("DS_RSA_KEY_PATH")
 
 # OpenID Connect configuration
+oidc_redirect_uri = os.getenv("ROOM_OIDC_REDIRECT_URL")
 oidc_client_secrets_json = {
     "web": {
         "client_id": os.getenv("ROOM_OIDC_CLIENT_ID"),
@@ -39,8 +40,7 @@ oidc_client_secrets_json = {
         "token_uri": os.getenv("ROOM_OIDC_TOKEN_URL"),
         "userinfo_uri": os.getenv("ROOM_OIDC_USERINFO_URL"),
         "issuer": os.getenv("ROOM_OIDC_ISSUER"),
-        "redirect_uris": [os.getenv("ROOM_OIDC_REDIRECT_URL")],
+        "redirect_uris": [oidc_redirect_uri],
     }
 }
 oidc_logout_url = os.getenv("ROOM_OIDC_LOGOUT_URL")
-oidc_overwrite_redirect_uri = os.getenv("ROOM_OIDC_REDIRECT_URL")

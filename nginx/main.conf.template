@@ -88,8 +88,12 @@ server {
     alias /assets/pay-intro;
   }
 
-  location ~ /pay/wall/(.*img|.*emo) {
+  location ~ /pay/wall/(.*img) {
     alias /assets/pay-wall/$1;
+  }
+
+  location ~ ^/pay/wall/(.*)-(L|H)\.emo {
+    alias /assets/pay-movie/$1-H.emo;
   }
 
   location /pay/list/category/img {

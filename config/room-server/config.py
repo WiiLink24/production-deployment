@@ -27,6 +27,7 @@ s3_access_key_id = os.getenv("S3_ACCESS_KEY_ID")
 s3_secret_access_key = os.getenv("S3_SECRET_ACCESS_KEY")
 
 url1_cdn_url = os.getenv("URL1_CDN_URL")
+url3_cdn_url = os.getenv("URL3_CDN_URL")
 
 ds_rsa_key_path = os.getenv("DS_RSA_KEY_PATH")
 

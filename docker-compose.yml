@@ -2,6 +2,7 @@ version: '3'
 
 services:
   postgres:
+    restart: on-failure:3
     image: postgres:14-alpine
     volumes:
       - pgdata:/var/lib/postgresql/data
@@ -14,6 +15,7 @@ services:
       - .env
 
   room_server:
+    restart: on-failure:3
     build: room-server
     depends_on:
       - postgres
@@ -30,6 +32,7 @@ services:
 
 
   food_server:
+    restart: on-failure:3
     build: food-server
     depends_on:
       - postgres
@@ -45,6 +48,7 @@ services:
       - ./food-assets:/home/server/images
 
   cam_server:
+    restart: on-failure:3
     build: cam-server
     depends_on:
       - postgres
@@ -61,6 +65,7 @@ services:
 
 
   digicard:
+    restart: on-failure:3
     build: Digicard
     depends_on:
       - postgres
@@ -77,6 +82,7 @@ services:
       - ./digicards:/home/server/cards
 
   nginx:
+    restart: on-failure:3
     build: nginx/
     depends_on:
       - room_server

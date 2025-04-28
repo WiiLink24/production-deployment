@@ -59,6 +59,10 @@ server {
     alias /assets/special/$1/$2;
   }
 
+  location ~ ^/special/(\d+)/mascot.bin {
+    alias /assets/special/$1/mascot.bin;
+  }
+
   location /dsmov {
     alias /assets/dsmov;
   }

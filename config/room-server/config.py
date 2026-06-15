@@ -45,3 +45,5 @@ oidc_client_secrets_json = {
     }
 }
 oidc_logout_url = os.getenv("ROOM_OIDC_LOGOUT_URL")
+
+community_photos_dir = os.getenv("ROOM_COMMUNITY_PHOTOS_DIR")

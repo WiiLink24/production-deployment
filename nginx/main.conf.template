@@ -1,7 +1,7 @@
 server {
   server_name ${NGINX_BASE_DOMAIN};
   listen 80;
-  client_max_body_size 200M;
+  client_max_body_size 900M;
 
   location / {
     proxy_pass http://room_server:5000/;

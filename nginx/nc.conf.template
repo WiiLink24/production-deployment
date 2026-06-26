@@ -1,0 +1,184 @@
+map $request_uri $country_code {
+    "~JP" 0;
+    "~AI" 2;
+    "~AG" 2;
+    '~AW' 2;
+    '~BS' 2;
+    '~BB' 2;
+    '~BZ' 2;
+    '~BO' 2;
+    '~BR' 2;
+    '~VG' 2;
+    '~CA' 2;
+    '~KY' 2;
+    '~CL' 2;
+    '~CO' 2;
+    '~CR' 2;
+    '~DM' 2;
+    '~DO' 2;
+    '~EC' 2;
+    '~SV' 2;
+    '~GF' 2;
+    '~GD' 2;
+    '~GP' 2;
+    '~GT' 2;
+    '~GY' 2;
+    '~HT' 2;
+    '~HN' 2;
+    '~JM' 2;
+    '~MQ' 2;
+    '~MX' 2;
+    '~MS' 2;
+    '~AN' 2;
+    '~NI' 2;
+    '~PA' 2;
+    '~PY' 2;
+    '~PE' 2;
+    '~KN' 2;
+    '~LC' 2;
+    '~VC' 2;
+    '~SR' 2;
+    '~TT' 2;
+    '~TC' 2;
+    '~US' 2;
+    '~UY' 2;
+    '~VI' 2;
+    '~VE' 2;
+    default 1;
+}
+
+map $request_uri $language_code {
+    "~ja" 0;
+    "~de" 2;
+    "~fr" 3;
+    "~es" 4;
+    "~it" 5;
+    "~nl" 6;
+    "~ptbr" 7;
+    "~en" 1;
+}
+
+map $request_uri $end_value {
+   "~(?<v>[^/?]+)(?=/?(?:$|\?))" $v; 
+}
+
+server {
+  server_name gateway.nc.wiilink24.com;
+  listen 80;
+  client_max_body_size 500M;
+
+  location / {
+    proxy_pass http://nintendo_channel:5000/;
+  }
+}
+
+
+server {
+  server_name ncc.wiilink24.com;
+
+  location ~ /6/(.*)/(.*)/csdata.bn {
+    alias /nc-assets/csdata/$country_code/$language_code/csdata.bin;
+  }
+
+  location ~ /6/(.*)/(.*)/csdata.LZ {
+    alias /nc-assets/csdata/$country_code/$language_code/csdata.bin;
+  }
+
+  location ~ /3/(.*)/(.*)/wc24data.LZ {
+    alias /nc-assets/lists/$country_code/$language_code/wc24data.LZ;
+  }
+}
+
+server {
+ server_name entu.wii.rc24.xyz;
+
+  location ~ /6/(.*)/(.*)/csdata.bn {
+    alias /nc-assets/csdata/$country_code/$language_code/csdata.bin;
+  }
+
+  location ~ /6/(.*)/(.*)/csdata.LZ {
+    alias /nc-assets/csdata/$country_code/$language_code/csdata.bin;
+  }
+}
+
+
+server {
+  server_name nc.veeand.me dol.n.wiinoma.com conf.n.wiinoma.com post.n.wiinoma.com entuc.wii.rc24.xyz entus.wii.rc24.xyz entup.wii.rc24.xyz;
+
+  location /6/cgi-bin/config.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/config.cgi;
+  }
+
+  location /3/cgi-bin/config.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/config.cgi;
+  }
+
+  location /3/cgi-bin/accomplishment.cgi {
+    return 503;
+  }
+
+  location /6/cgi-bin/bookmark.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/bookmark.cgi;
+  }
+
+  location /6/cgi-bin/getreview.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/getreview.cgi;
+  }
+
+  location /6/cgi-bin/delreview.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/delreview.cgi;
+  }
+
+  location /6/cgi-bin/review.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/review.cgi;
+  }
+
+  location /6/cgi-bin/accomplishment.cgi {
+    proxy_pass http://nintendo_channel:5000/6/cgi-bin/accomplishment.cgi;
+  }
+
+  location ~ /f/248/(?:.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/soft/(\w+)/(\w+)/(.*info) {
+    alias /nc-assets/infos/$country_code/$language_code/$end_value; 
+  }
+
+  location ~ /f/248/(?:.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/list/(.*)/(.*)/434968891.LZ {
+    alias /nc-assets/lists/$country_code/$language_code/dllist.bin;
+  }
+
+  location ~ /f/248/(?:.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/thumbnail/(.*)/(.*)/434968891-001.thumb {
+    alias /nc-assets/thumbnail.bin;
+  }
+
+  location ~ /f/248/(?:.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/system/(.*)/(.*)/1.bin {
+    alias /nc-assets/demos/recommend.bin;
+  }
+
+  location ~ /f/248/(.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/system/(.*)/(.*)/testmovie-(h|l)\.mo {
+    alias /nc-assets/videos/1.mo;
+  }
+
+  location ~ /f/248/(.*)/1h/entesm.wapp.wii.com/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/movie/(.*)/(.*)/(\d+)-(h|l) {
+	return 200 "";
+#    alias /nc-assets/videos/$4.mo;
+  }
+
+  location ~ /f/248/(.*)/1h/entusm.wapp.wii.com/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/movie/(.*)/(.*)/(\d+)-(h|l) {
+	return 200 "";
+  }
+
+  location ~ /f/248/(.*)/1h/entjsm.wapp.wii.com/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/movie/(.*)/(.*)/(\d+)-(h|l) {
+	return 200 "";
+  }
+
+  location ~ /f/248/(.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/movie/(.*)/(.*)/(\d+)-(h|l)\.mo {
+    alias /nc-assets/videos/$4.mo;
+  }
+
+  location ~ /f/248/(.*)/1h/(?:.*)/3/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/movie/(.*)/(.*)/(.*).3gp {
+    alias /nc-assets/videos/28.3gp;
+  }
+
+  location ~ /f/248/(.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/dstrial/(.*)/(.*)/(.*) {
+    alias /nc-assets/demos/$4;
+  }
+}

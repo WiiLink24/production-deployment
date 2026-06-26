@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   postgres:
     restart: on-failure:3
@@ -14,9 +12,12 @@ services:
     env_file:
       - .env
 
+################################################################################
+#                        Japanese Channels                                     #
+################################################################################
   room_server:
     restart: on-failure:3
-    build: room-server
+    image: ghcr.io/wiilink24/room-server:latest
     depends_on:
       - postgres
     networks:
@@ -28,12 +29,12 @@ services:
     volumes:
       - ./config/room-server/config.py:/home/server/config.py
       - ./config/eula.txt:/home/server/conf/eula.txt
-      - ./room-assets:/home/server/assets
+      - /mnt/HC_Volume_101081159/room-assets:/home/server/assets
 
 
   food_server:
     restart: on-failure:3
-    build: food-server
+    image: ghcr.io/wiilink24/food-server:latest
     depends_on:
       - postgres
     networks:
@@ -49,7 +50,7 @@ services:
 
   cam_server:
     restart: on-failure:3
-    build: cam-server
+    image: ghcr.io/wiilink24/cam-server:latest
     depends_on:
       - postgres
     networks:
@@ -62,11 +63,12 @@ services:
       - ./cam-templates:/home/server/templates
       # Used for order file storage.
       - ./cam-orders:/home/server/orders
+      - ./cam-templates/00000002.app:/home/server/00000002.app
 
 
   digicard:
     restart: on-failure:3
-    build: Digicard
+    image: ghcr.io/wiilink24/digicard:latest
     depends_on:
       - postgres
       - cam_server
@@ -89,17 +91,303 @@ services:
     networks:
       - internal
     ports:
-      - "127.0.0.1:80:80"
+      - "127.0.0.1:8080:80"
     env_file:
       - .env
     volumes:
-    - ./room-assets:/assets
+    - /mnt/HC_Volume_101081159/room-assets:/assets
     - ./Digicard:/digicard
     - ./food-assets:/food-assets
+    - /opt/wiilink/nc/assets:/nc-assets
+
+################################################################################
+#                           Mii Contest Channel                                #
+################################################################################
+  cmoc_admin:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/miicontestchannelserver:latest
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - internal
+      - db_access
+      - redis_access
+    ports:
+      - "2001:2001"
+    volumes:
+      - /opt/wiilink/prod/config/cmoc/config.xml:/opt/wiilink/cmoc/MiiContestChannelServer/config.xml
+      - /opt/wiilink/prod/cmoc-assets:/opt/wiilink/cmoc/MiiContestChannelServer/cmoc-assets
+
+  cmoc_viewer:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/miicontestchannelweb:latest
+    depends_on:
+      - postgres
+    networks:
+      - internal
+      - db_access
+    ports:
+      - "127.0.0.1:2002:3000"
+    env_file:
+      - ./config/cmoc/.env
+
+################################################################################
+#                                 Wii Mail                                     #
+################################################################################
+  wii_mail:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/mail-server:latest
+    depends_on:
+      - postgres
+    networks:
+      - internal
+      - db_access
+      - monitoring_access
+    ports:
+      - "6666:6666"
+    volumes:
+      - ./config/wii-mail/config.xml:/app/config.xml
+
+  mail_admin:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/mail-admin:latest
+    networks:
+      - internal
+    ports:
+      - "6667:2001"
+    volumes:
+      - ./config/mail-admin/config.xml:/app/config.xml
+      - /opt/wiilink/cfh/announcements:/app/announcements
+
+################################################################################
+#                               News Channel                                   #
+################################################################################
+  news_channel:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/newschannel:latest
+    network_mode: container:wireguard-client
+    volumes:
+      - ./config/news/config.xml:/home/server/config.xml
+      - ./config/news/Private.pem:/home/server/Private.pem
+      - ./news/v2:/home/server/v2
+      - ./news/cache:/home/server/cache
+    depends_on:
+      - rsshub
+
+  rsshub:
+    container_name: rsshub
+    image: ghcr.io/diygod/rsshub:chromium-bundled
+    network_mode: container:wireguard-client
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      CACHE_TYPE:
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:1200/healthz']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+################################################################################
+#                               Forecast Channel                               #
+################################################################################
+  forecast_channel:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/forecastchannel:latest
+    volumes:
+      - ./config/forecast/config.xml:/home/server/config.xml
+      - ./config/forecast/Private.pem:/home/server/Private.pem
+      - ./forecast:/home/server/files
+
+################################################################################
+#                              WiiLink Accounts                                #
+################################################################################
+  account_manager:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/accountmanager:latest
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      start_period: 30s
+      retries: 3
+    ports:
+      - "3888:8080"
+    networks:
+      - internal
+    volumes:
+      - ./config/accounts/config.xml:/AccountManager/config.xml
+      - /tmp:/tmp
+
+################################################################################
+#                            Mii Stamp Generator                               #
+################################################################################
+  stamp:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/stamp-generator:latest
+    networks:
+      - internal
+    ports:
+      - "127.0.0.1:2003:3000"
+
+################################################################################
+#                              Nintendo Channel                                #
+################################################################################
+  nintendo_channel:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/nintendochannelweb:latest
+    depends_on:
+      - postgres
+    ports:
+      - "127.0.0.1:9000:5000"
+    networks:
+      - internal
+      - db_access
+    volumes:
+      - /opt/wiilink/nc/assets:/home/server/assets
+      - ./config/nc/config.xml:/home/server/config.xml
+      - ./config/nc/config.py:/home/server/config.py
+  
+  checkout:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/checkout:latest
+    depends_on:
+      - postgres
+    ports:
+      - "127.0.0.1:9001:9001"
+    networks:
+      - internal
+      - db_access
+    volumes:
+      - ./config/checkout/config.py:/home/ubuntu/config.py
+      - ./checkout-cache:/home/ubuntu/cache
+      - /opt/wiilink/prod/cam-orders:/home/ubuntu/uploads:ro
+      - /opt/wiilink/prod/cam-templates/templates:/home/ubuntu/templates/templates:ro
+      - /opt/wiilink/prod/cam-templates/fonts:/home/ubuntu/templates/fonts:ro
+
+####################################################################################
+#                           Everybody Votes Channel                                #
+####################################################################################
+  evc_web_panel:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/evcwebpanel:latest
+    depends_on:
+      - postgres
+    ports:
+      - "127.0.0.1:8000:5000"
+    networks:
+      - internal
+      - db_access
+    volumes:
+      - ./config/evc/config.py:/home/server/config.py
+
+  votes_server:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/votes-server:latest
+    depends_on:
+      - postgres
+    networks:
+      - db_access
+    ports:
+      - "127.0.0.1:8003:8001"
+    volumes:
+      - ./config/evc/config.xml:/opt/wiilink/evc/Votes-Server/config.xml
+
+  evc_viewer:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/evc-viewer:latest
+    depends_on:
+      - postgres
+    ports:
+      - "8004:4000"
+    networks:
+      - internal
+      - db_access
+    env_file:
+      /opt/wiilink/prod/config/evc/.env
+
+####################################################################################
+#                                  Demae Just Eat                                  #
+####################################################################################
+  just_eat:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/demae-justeat:latest
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "127.0.0.1:4011:4011"
+      - "127.0.0.1:4012:4012"
+    networks:
+      - internal
+      - db_access
+      - redis_access
+    volumes:
+      - ./config/eater/config.xml:/app/config.xml
+      - /tmp:/tmp
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    networks:
+      - redis_access
+    volumes:
+      - redis_data:/data
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+
+####################################################################################
+#                                     Discord Bot                                  #
+####################################################################################
+  wiilink_bot:
+    restart: on-failure:3
+    image: ghcr.io/wiilink24/wiilink-bot:latest
+    depends_on:
+      - postgres
+    networks:
+      - internal
+      - db_access
+    volumes:
+      - /opt/wiilink/prod/config/bot/google_creds.json:/app/google_creds.json
+      - ./wads:/app/wads
+      - /opt/wiilink/prod/config/bot/.env:/app/.env
+
+####################################################################################
+#                                       Pipeline                                   #
+####################################################################################
+  pipeline:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/mobiclip-linux-setup:latest
+    ports:
+      - 127.0.0.1:6099:8080
+    volumes:
+      - ./config/pipeline/config.py:/home/ubuntu/ui/config.py
+      - ./config/pipeline/User.lic:/home/ubuntu/User.lic
+
+####################################################################################
+#                                     WFC Website                                  #
+####################################################################################
+  wfc_web:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/wfc-web:latest
+    ports:
+      - 9002:8080
+    networks:
+      - internal
+      - db_access
+    volumes:
+      - ./config/wfc_web/config.py:/home/server/config.py
+      - ./wfc-patches:/home/server/patches
 
 networks:
   internal:
   db_access:
+  redis_access:
+  monitoring_access:
+    external: true
 
 volumes:
   pgdata:
+  redis_data:

@@ -1,0 +1,14 @@
+server {
+  server_name fore.wiilink24.com weather.wapp.wii.com; 
+  listen 80;
+  listen [::]:80;
+  client_max_body_size 500M;
+
+  location ~ /(.*)/(.*)/forecast.bin {
+    alias /var/www/forecast/$1/$2/forecast.bin;
+  }
+
+  location ~ /(.*)/(.*)/short.bin {
+    alias /var/www/forecast/$1/$2/short.bin;
+  }
+}

@@ -2,11 +2,13 @@
 An assortment of Compose definitions for production usage.
 
 ### Setup
-1. Copy `.env.example` to `.env` and make edits accordingly for the PostgreSQL database's credentials, base domain, and other items.
-2. Ensure assets are present within the `assets` folder for usage with `room-server`.
-3. Ensure [room-server](https://github.com/WiiLink24/room-server), [cam-server](https://github.com/WiiLink24/cam-server) and [food-server](https://github.com/WiiLink24/food-server) are cloned within this folder.
-4. Copy `config/eula.example.txt` to `config/eula.txt` and edit to your liking.
-5. Within the `config` folder, read each README for per-server configuration.
-6. `docker-compose up` will bring your server up on `<release_type>.<base_domain>`!
+1. Copy `.env.example` to `.env` and fill it out
+2. Copy `config/eula.example.txt` to `config/eula.txt` and edit to your liking.
+3. Within the `config` folder, copy each `config-example` and `.env.example` file and fill them out.
 
-For example, if `<base_domain>` is defined as `example.com` and `<release_type>` is "prod", your server will be available on `prod.example.com`.
+> [!TIP] Not using a Wireguard VPN?
+> You will need to go through containers in the compose, replacing their `network-mode:` lines with standard `networks:` lines. You will also need to replace instances of `wireguard_client` in the nginx templates with the container name (e.g. `demae_dominos`)
+
+### Starting your server
+**Running a specific service** (i.e. News Channel) - `docker compose up -d news_channel`
+**Running the whole stack** - `docker compose up -d`

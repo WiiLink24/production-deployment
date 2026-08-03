@@ -1,0 +1,10 @@
+server {
+  server_name patcher.wiilink24.com;
+  listen 80;
+  listen [::]:80;
+
+  root /var/www/patcher;
+
+  location / {
+  }
+}

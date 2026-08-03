@@ -1,0 +1,8 @@
+server {
+  server_name pipeline.wiilink.ca;
+  listen 80;
+
+  location / {
+      proxy_pass http://pipeline:8080/;
+  }
+}

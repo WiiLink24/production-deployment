@@ -7,10 +7,10 @@ server {
   }
   
   location ~ /logoimg2/(.*jpg) {
-    alias /food-assets/$1;
+    alias /var/www/food-assets/$1;
   }
   
   location ~ /itemimg/(\d+)/(.*jpg) {
-    alias /food-assets/$1/$2;
+    alias /var/www/food-assets/$1/$2;
   }
 }

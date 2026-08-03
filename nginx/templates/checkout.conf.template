@@ -1,0 +1,8 @@
+server {
+  server_name checkout.wiilink.ca;
+  listen 80;
+
+  location / {
+      proxy_pass http://checkout:9001/;
+  }
+}

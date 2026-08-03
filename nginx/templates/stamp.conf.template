@@ -1,0 +1,8 @@
+server {
+  server_name stamp.wiilink.ca;
+  listen 80;
+
+  location / {
+      proxy_pass http://stamp:3000/;
+  }
+}

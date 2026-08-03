@@ -1,0 +1,12 @@
+<Config>
+    <!-- Credentials -->
+    <username></username>
+    <password></password>
+
+    <!-- Database information -->
+    <databaseAddress></databaseAddress>
+    <databaseName></databaseName>
+
+    <!-- Assets -->
+    <assetsPath>/home/server/assets</assetsPath>
+</Config>

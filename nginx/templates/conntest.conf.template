@@ -1,0 +1,13 @@
+server {
+  server_name conntest.nintendowifi.net;
+  listen 80;
+  listen [::]:80;
+
+  root /var/www/conntest;
+  index index.html;
+
+  location / {
+        add_header X-Organization "Nintendo";
+        try_files /index.html =200;
+  }
+}

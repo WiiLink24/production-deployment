@@ -1,0 +1,8 @@
+server {
+  server_name bulletin.wiilink.ca;
+  listen 80;
+
+  location / {
+      proxy_pass http://mail_admin:2001/;
+  }
+}

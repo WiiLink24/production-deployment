@@ -3,9 +3,9 @@ server {
   listen 80;
 
 	client_body_buffer_size     100M;
-client_max_body_size        100M;
+  client_max_body_size        100M;
 
   location / {
-      proxy_pass http://wii_mail:53567/;
+      proxy_pass http://wii_mail:6666/;
   }
 }

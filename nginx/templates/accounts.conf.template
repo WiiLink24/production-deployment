@@ -1,0 +1,8 @@
+server {
+  server_name accounts.wiilink.ca;
+  listen 80;
+
+  location / {
+      proxy_pass http://account_manager:8080/;
+  }
+}

@@ -1,0 +1,16 @@
+<Config>
+    <Address>0.0.0.0:9003</Address>
+
+    <!-- Database configuration -->
+    <SQLAddress></SQLAddress>
+    <SQLUser></SQLUser>
+    <SQLPass></SQLPass>
+    <SQLDB></SQLDB>
+
+    <!-- Discord Webhook -->
+    <ErrorWebhook></ErrorWebhook>
+    <OrderWebhook></OrderWebhook>
+
+    <!-- External APIs -->
+    <SentryDSN></SentryDSN>
+</Config>

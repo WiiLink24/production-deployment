@@ -1,0 +1,24 @@
+<Config>
+    <Address>0.0.0.0:6666</Address>
+
+    <!-- Database configuration -->
+    <SQLAddress></SQLAddress>
+    <SQLUser></SQLUser>
+    <SQLPass></SQLPass>
+    <SQLDB></SQLDB>
+
+    <!-- External APIs -->
+    <SentryDSN></SentryDSN>
+    <SMTPUsername></SMTPUsername>
+    <SMTPPassword></SMTPPassword>
+    <SMTPHost></SMTPHost>
+
+    <UseOTLP></UseOTLP>
+    <OTLPEndpoint></OTLPEndpoint>
+    <IsDebug></IsDebug>
+
+    <AWSAccessId></AWSAccessId>
+    <AWSSecretKey></AWSSecretKey>
+    <AWSRegion></AWSRegion>
+    <AWSBucket></AWSBucket>
+</Config>

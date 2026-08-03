@@ -4,4 +4,4 @@
 sed -i 's/HOST_IP/'$HOST_IP'/' /etc/dnsmasq.d/*
 
 # Standard entrypoint command
-/sbin/tini -- /usr/bin/dnsmasq.sh
+/usr/bin/dnsmasq.sh

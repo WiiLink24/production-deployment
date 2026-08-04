@@ -12,3 +12,12 @@ server {
     alias /var/www/forecast/$1/$2/short.bin;
   }
 }
+
+server {
+    listen 80;
+    server_name weather.wii.rc24.xyz;
+
+    location / {
+        return 410;
+    }
+}

@@ -9,14 +9,14 @@ server {
   }
 
   location /assets/style.css {
-    alias /digicard/templates/style.css;
+    alias /var/www/digicard/templates/style.css;
   }
 
   location /assets/ {
-    alias /digicard/assets/;
+    alias /var/www/digicard/assets/;
   }
 
   location /js {
-    alias /digicard/js;
+    alias /var/www/digicard/js;
   }
 }

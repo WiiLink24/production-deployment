@@ -1,0 +1,8 @@
+server {
+  server_name ${WFC_DOMAIN};
+  listen 80;
+
+  location / {
+      proxy_pass http://wfc_web:8080/;
+  }
+}

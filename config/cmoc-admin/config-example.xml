@@ -1,0 +1,30 @@
+<Config>
+    <!-- The address which HTTP will bind to -->
+    <address>0.0.0.0:2001</address>
+
+    <!-- Credentials -->
+    <username></username>
+    <password></password>
+
+    <!-- Database information-->
+    <databaseAddress></databaseAddress>
+    <databaseName></databaseName>
+    <assetsPath></assetsPath>
+
+    <!-- For debug purposes only-->
+    <!-- Turns off the authentification middleware-->
+    <auth_mode>false</auth_mode>
+
+    <!-- OIDC credentials/data -->
+    <oidc>
+        <clientID></clientID>
+        <clientSecret></clientSecret>
+        <redirectURL></redirectURL>
+        <scopes></scopes>
+        <provider></provider>
+    </oidc>
+
+    <!-- Session management -->
+    <redisAddress></redisAddress>
+    <sessionSecret></sessionSecret>
+</Config>

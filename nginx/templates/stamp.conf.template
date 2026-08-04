@@ -1,0 +1,8 @@
+server {
+  server_name ${STAMP_DOMAIN};
+  listen 80;
+
+  location / {
+      proxy_pass http://stamp:3000/;
+  }
+}

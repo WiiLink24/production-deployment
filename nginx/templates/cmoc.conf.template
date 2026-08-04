@@ -1,0 +1,47 @@
+server {
+  server_name miicontestp.wii.rc24.xyz miicontestp.wapp.wii.com ${CMOC_SERVER_DOMAIN};
+  client_max_body_size 500M;
+  listen 80;
+  listen [::]:80;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://cmoc_admin:2001/;
+  }
+
+  location /assets/contest/ {
+    alias /var/www/cmoc-assets/contest/;
+  }
+}
+
+server {
+  server_name ${CMOC_DOMAIN} miicontest.wapp.wii.com miicontest.wii.rc24.xyz;
+  client_max_body_size 500M;
+
+  listen 80;
+  listen [::]:80;
+  root /var/www/cmoc-assets;
+
+  location / {
+   
+  }
+
+  location ~ ^/dd/(.*) {
+    alias /var/www/cmoc-assets/dd/miidd_018.enc;
+  }
+
+}
+
+
+server {
+  server_name ${CMOC_VIEWER_DOMAIN};
+  client_max_body_size 500M;
+
+  listen 80;
+  listen [::]:80;
+
+  location / {
+     proxy_set_header Host $host;
+     proxy_pass http://cmoc_viewer:2002/;
+  }
+}

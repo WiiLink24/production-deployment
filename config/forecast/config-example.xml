@@ -1,0 +1,9 @@
+<Config>
+    <accuweather_key>AUTH_KEY_HERE</accuweather_key>
+    <use_s3>false</use_s3>
+    <s3_bucket_name>forecast-channel</s3_bucket_name>
+    <s3_account_id></s3_account_id>
+    <s3_connection_url></s3_connection_url>
+    <s3_access_key_id></s3_access_key_id>
+    <s3_secret_access_key></s3_secret_access_key>
+</Config>

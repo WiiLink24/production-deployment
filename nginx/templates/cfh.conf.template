@@ -1,0 +1,22 @@
+server {
+ server_name ${CFH_DOMAIN} cfh.wapp.wii.com;
+ listen 80;
+ listen [::]:80;
+
+ root /var/www/cfh;
+ location / {
+  proxy_pass http://cfh.wapp.wii.com;
+ }
+
+ location = /eula/logo_blue.png {
+  alias /var/www/cfh/eula/logo_blue.png;
+ }
+
+ location ~ ^/eula/(.*)/(.*) {
+  alias /var/www/cfh/eula/eula.html;
+ }
+
+ location ~ /address/ {
+  alias /var/www/cfh/address/;
+ }
+}

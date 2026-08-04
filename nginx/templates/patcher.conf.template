@@ -1,0 +1,10 @@
+server {
+  server_name ${PATCHER_DOMAIN};
+  listen 80;
+  listen [::]:80;
+
+  root /var/www/patcher;
+
+  location / {
+  }
+}

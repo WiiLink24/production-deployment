@@ -1,15 +1,7 @@
-/.env
+.env
+Private.pem
 /.idea
-
-# We do not want to have these directories committed.
-/assets
-/templates
-
-# Nor do we want our user-configured EULA to be tracked.
+config.py
+config.xml
 /config/eula.txt
-
-# Similarly, we do not want our cloned source tracked.
-/cam-server
-/food-server
-/room-server
-/Digicard
+google_creds.json

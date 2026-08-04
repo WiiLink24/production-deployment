@@ -1,0 +1,11 @@
+server {
+  server_name ${ANNOUNCEMENTS_DOMAIN};
+  listen 80;
+  listen [::]:80;
+
+  root /var/www/announcements;
+  if_modified_since   before;
+
+  location / {
+  }
+}

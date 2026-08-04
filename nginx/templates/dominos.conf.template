@@ -1,0 +1,40 @@
+server {
+  server_name ${DOMINOS_DOMAIN};
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  client_max_body_size 500M;
+
+   ssl_certificate     /var/www/dominos/server.pem;
+    ssl_certificate_key /var/www/dominos/server.key;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+    ssl_ciphers         ALL:@SECLEVEL=0;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://wireguard_client:9003/;
+  }
+}
+
+server {
+  server_name ${DOMINOS_DOMAIN};
+  listen 80;
+  listen [::]:80;
+  client_max_body_size 500M;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://wireguard_client:9003/;
+  }
+}
+
+server {
+  server_name ${DOMINOS_TRACKER_DOMAIN};
+  listen 80;
+  listen [::]:80;
+  client_max_body_size 500M;
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://wireguard_client:9021/;
+  }
+}

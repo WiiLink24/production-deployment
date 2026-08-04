@@ -1,0 +1,8 @@
+server {
+  server_name ${PIPELINE_DOMAIN};
+  listen 80;
+
+  location / {
+      proxy_pass http://pipeline:8080/;
+  }
+}

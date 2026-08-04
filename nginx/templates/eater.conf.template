@@ -1,0 +1,21 @@
+server {
+  server_name ${EATER_DOMAIN};
+  listen 80;
+  listen [::]:80;
+  client_max_body_size 500M;
+
+
+  location / {
+    proxy_set_header Host $host;
+    proxy_pass http://just_eat:80/;
+  }
+}
+
+server {
+  server_name ${EATER_WEB_DOMAIN};
+  listen 80;
+
+  location / {
+      proxy_pass http://just_eat:8080/;
+  }
+}

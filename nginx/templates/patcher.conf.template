@@ -1,5 +1,5 @@
 server {
-  server_name patcher.wiilink24.com;
+  server_name ${PATCHER_DOMAIN};
   listen 80;
   listen [::]:80;
 

@@ -1,5 +1,5 @@
 server {
-  server_name fore.wiilink24.com weather.wapp.wii.com; 
+  server_name ${FORECAST_DOMAIN} weather.wapp.wii.com; 
   listen 80;
   listen [::]:80;
   client_max_body_size 500M;

@@ -1,5 +1,5 @@
 server {
-  server_name pipeline.wiilink.ca;
+  server_name ${PIPELINE_DOMAIN};
   listen 80;
 
   location / {

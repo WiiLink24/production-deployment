@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name news.wiilink.ca;
+    server_name ${NEWS_DOMAIN};
     root /var/www/news;
 
     location / {

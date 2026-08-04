@@ -1,5 +1,5 @@
 server {
-  server_name mail.wiilink.ca;
+  server_name ${ANNOUNCEMENTS_DOMAIN};
   listen 80;
   listen [::]:80;
 

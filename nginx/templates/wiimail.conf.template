@@ -1,5 +1,5 @@
 server {
-  server_name mtw.rc24.xyz;
+  server_name ${MAIL_DOMAIN};
   listen 80;
 
 	client_body_buffer_size     100M;

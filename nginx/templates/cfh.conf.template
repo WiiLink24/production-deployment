@@ -1,5 +1,5 @@
 server {
- server_name ch.wiilink24.com cfh.wapp.wii.com;
+ server_name ${CFH_DOMAIN} cfh.wapp.wii.com;
  listen 80;
  listen [::]:80;
 

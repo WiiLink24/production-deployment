@@ -1,5 +1,5 @@
 server {
-  server_name stamp.wiilink.ca;
+  server_name ${STAMP_DOMAIN};
   listen 80;
 
   location / {

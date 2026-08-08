@@ -70,10 +70,11 @@ services:
     image: ghcr.io/wfg/wireguard:latest
     networks:
       - internal
+      - db_access
     cap_add:
       - NET_ADMIN
     environment:
-      - ALLOWED_SUBNETS=192.168.0.0/24,192.168.1.0/24
+      - ALLOWED_SUBNETS=192.168.0.0/24,192.168.1.0/24,172.16.0.0/12
     volumes:
       - ./config/wireguard:/etc/wireguard
 

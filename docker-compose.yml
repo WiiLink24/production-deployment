@@ -35,6 +35,9 @@ services:
     - ${DOMINOS_CERTS_PATH}:/var/www/dominos
     - ${PATCHER_FILES_PATH}:/var/www/patcher
     - ${CFH_FILES_PATH}:/var/www/cfh
+    - ${KIRBY_XML_PATH}:/var/www/kirby/xml
+    - ${KIRBY_EPISODES_PATH}:/var/www/kirby/episodes
+    - ${KIRBY_PROMOS_PATH}:/var/www/kirby/promos
 
   redis:
     restart: unless-stopped

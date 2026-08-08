@@ -223,6 +223,20 @@ services:
       - db_access
     env_file:
       - ./config/cmoc-viewer/.env
+  
+  cmoc:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/miicontestchannel:latest
+    group_add:
+      - ${GID}
+    depends_on:
+      - nginx
+      - postgres
+    networks:
+      - db_access
+    volumes:
+      - ./config/cmoc/config.xml:/home/server/config.xml
+      - ${CMOC_ASSETS_PATH}:/home/server/assets
 
 ################################################################################
 #                                 Wii Mail                                     #
@@ -376,7 +390,7 @@ services:
       - internal
       - db_access
     volumes:
-      - ./config/evc/config.xml:/opt/wiilink/evc/Votes-Server/config.xml
+      - ./config/evc-server/config.xml:/opt/wiilink/evc/Votes-Server/config.xml
 
   evc_viewer:
     restart: unless-stopped
@@ -389,6 +403,20 @@ services:
       - db_access
     env_file:
       ./config/evc-viewer/.env
+  
+  evc:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/evc:latest
+    group_add:
+      - ${GID}
+    depends_on:
+      - nginx
+      - postgres
+    networks:
+      - db_access
+    volumes:
+      - ./config/evc/config.xml:/home/server/config.xml
+      - ${EVC_FILES_PATH}/votes:/home/server/votes
 
 ####################################################################################
 #                                     Discord Bot                                  #

@@ -3,7 +3,10 @@
     <username></username>
     <password></password>
 
-    <!-- Database information-->
+    <!-- Database information -->
     <databaseAddress></databaseAddress>
     <databaseName></databaseName>
+
+    <!-- Everything else -->
+    <assetsPath>assets</assetsPath>
 </Config>

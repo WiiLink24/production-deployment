@@ -30,7 +30,7 @@ services:
     - ${ANNOUNCEMENTS_PATH}:/var/www/announcements
     - ${CMOC_ASSETS_PATH}:/var/www/cmoc-assets
     - ${FORECAST_ASSETS_PATH}:/var/www/forecast
-    - ${NEWS_ASSETS_PATH}:/var/www/news
+    - ${NEWS_ASSETS_PATH}:/var/www/news/v2
     - ${EVC_FILES_PATH}:/var/www/evc
     - ${DOMINOS_CERTS_PATH}:/var/www/dominos
     - ${PATCHER_FILES_PATH}:/var/www/patcher
@@ -65,6 +65,8 @@ services:
   wireguard_client:
     restart: unless-stopped
     image: ghcr.io/wfg/wireguard:latest
+    networks:
+      - internal
     cap_add:
       - NET_ADMIN
     environment:

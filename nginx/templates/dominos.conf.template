@@ -35,6 +35,6 @@ server {
 
   location / {
     proxy_set_header Host $host;
-    proxy_pass http://wireguard_client:9021/;
+    proxy_pass http://wireguard_client:5000/;
   }
 }

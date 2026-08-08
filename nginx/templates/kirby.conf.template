@@ -1,0 +1,30 @@
+server {
+        listen 80;
+        listen [::]:80;
+        root /var/www/kirby;
+        server_name kirby.wiilink24.com;
+	
+	location ~ /kctv2/xml/gb_config_(.*).xml {
+		try_files /xml/gb_config_$1.xml /xml/gb_config_en.xml =404;
+	}
+
+        # XML's
+        location ~ /kctv2/xml/(.*xml) {
+                try_files /xml/gb_config_en.xml =404;
+        }
+
+	location ~ /kctv2/(.*)/(.*mo) {
+                 try_files /episodes/$1/$2 /episodes/en/$1 =404;
+	}
+
+
+        # Kirby Episodes
+        location ~ /kctv/(.*mo) {
+                try_files /episodes/en/$1 =404;
+        }
+
+        # Promos
+        location ~ /video/(.*mo) {
+                try_files /promos/$1 =404;
+        }
+}

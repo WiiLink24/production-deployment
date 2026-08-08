@@ -12,7 +12,7 @@ server {
   server_name url1.${ROOM_BASE_DOMAIN};
 
   location ~ /conf/brtest-(H|L)\.mov {
-    alias /assets/conf/brtest-H.mov;
+    alias /var/www/room-assets/conf/brtest-H.mov;
   }
 
   # Ensure room XML is passed to server.
@@ -22,53 +22,53 @@ server {
 
   # If we're serving a movie, upgrade to high quality.
   location ~ ^/(urllink|delivery|coupon|picture|enqmov)/(\d+)-(L|H)\.mov {
-    alias /assets/$1/$2-H.mov;
+    alias /var/www/room-assets/$1/$2-H.mov;
   }
 
   # Otherwise, serve room assets as-is.
   location ~ /(urllink|delivery|coupon|picture|enqmov)/(.*) {
-    alias /assets/$1/$2;
+    alias /var/www/room-assets/$1/$2;
   }
 
   location /intro {
-    alias /assets/normal-intro;
+    alias /var/www/room-assets/normal-intro;
   }
 
   location ~ /wall/(.*img) {
-    alias /assets/normal-wall/$1;
+    alias /var/www/room-assets/normal-wall/$1;
   }
   
   location /list/category/img {
-    alias /assets/normal-category;
+    alias /var/www/room-assets/normal-category;
   }
 
   # We only want to capture movie URLs ending with img or mov.
   location ~ ^/movie/(.*)/(\d+)\.img {
-    alias /assets/movies/$1/$2.img;
+    alias /var/www/room-assets/movies/$1/$2.img;
   }
 
   location ~ ^/movie/(.*)/(\d+)-(L|H)\.mov {
-    alias /assets/movies/$1/$2-H.mov;
+    alias /var/www/room-assets/movies/$1/$2-H.mov;
   }
 
   location ~ ^/special/(\d+)/img/g1234.img {
-    alias /assets/special/$1/parade_banner.jpg;
+    alias /var/www/room-assets/special/$1/parade_banner.jpg;
   }
 
   location ~ ^/special/(\d+)/img/(.*(img)) {
-    alias /assets/special/$1/$2;
+    alias /var/www/room-assets/special/$1/$2;
   }
 
   location ~ ^/special/(\d+)/mascot.bin {
-    alias /assets/special/$1/mascot.bin;
+    alias /var/www/room-assets/special/$1/mascot.bin;
   }
 
   location /dsmov {
-    alias /assets/dsmov;
+    alias /var/www/room-assets/dsmov;
   }
 
   location /voice {
-    alias /assets/voice;
+    alias /var/www/room-assets/voice;
   }
 
   location / {
@@ -89,28 +89,28 @@ server {
   server_name url3.${ROOM_BASE_DOMAIN};
 
   location /pay/intro {
-    alias /assets/pay-intro;
+    alias /var/www/room-assets/pay-intro;
   }
 
   location ~ /pay/wall/(.*img) {
-    alias /assets/pay-wall/$1;
+    alias /var/www/room-assets/pay-wall/$1;
   }
 
   location ~ ^/pay/wall/(.*)-(L|H)\.emo {
-    alias /assets/pay-wall/$1-H.emo;
+    alias /var/www/room-assets/pay-wall/$1-H.emo;
   }
 
   location /pay/list/category/img {
-    alias /assets/pay-category;
+    alias /var/www/room-assets/pay-category;
   }
 
   # We only want to capture movie URLs ending with img or mov.
   location ~ ^/pay/movie/(.*)/(\d+)/(.*)\.img {
-    alias /assets/pay-movie/$1/$2/$3.img;
+    alias /var/www/room-assets/pay-movie/$1/$2/$3.img;
   }
 
   location ~ ^/pay/movie/(.*)/(\d+)/(.*)-(L|H)\.smo {
-    alias /assets/pay-movie/$1/$2/$3-H.smo;
+    alias /var/www/room-assets/pay-movie/$1/$2/$3-H.smo;
   }
 
   location / {
@@ -123,6 +123,6 @@ server {
   listen 80;
 
   location / {
-    root /assets/shop;
+    root /var/www/room-assets/shop;
   }
 }

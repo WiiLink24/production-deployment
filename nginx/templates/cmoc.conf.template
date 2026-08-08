@@ -42,6 +42,6 @@ server {
 
   location / {
      proxy_set_header Host $host;
-     proxy_pass http://cmoc_viewer:2002/;
+     proxy_pass http://cmoc_viewer:3000/;
   }
 }

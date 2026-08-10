@@ -55,8 +55,6 @@ services:
     restart: unless-stopped
     build: dnsmasq/
     environment:
-      - DNS1=9.9.9.9
-      - DNS2=1.1.1.1
       - HOST_IP=${HOST_IP}
     ports:
       - "${HOST_IP}:${DNS_PORT}:53/udp"

@@ -1,7 +1,15 @@
 server {
   server_name ${ROOM_BASE_DOMAIN};
   listen 80;
+  listen [::]:80;
+  listen 443 ssl;
+  listen [::]:443 ssl;
   client_max_body_size 900M;
+
+  ssl_certificate     /var/www/room-certs/server.pem;
+  ssl_certificate_key /var/www/room-certs/server.key;
+  ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+  ssl_ciphers         ALL:@SECLEVEL=0;
 
   location / {
     proxy_pass http://room_server:5000/;

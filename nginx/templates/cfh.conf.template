@@ -16,7 +16,7 @@ server {
   alias /var/www/cfh/eula/eula.html;
  }
 
- location ~ /address/ {
+ location /address/ {
   alias /var/www/cfh/address/;
  }
 }

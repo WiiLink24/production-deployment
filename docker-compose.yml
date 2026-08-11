@@ -24,6 +24,8 @@ services:
       - .env
     volumes:
     - ${ROOM_ASSETS_PATH}:/var/www/room-assets
+    - ./config/room-server/server.pem:/var/www/room-certs/server.pem
+    - ./config/room-server/server.key:/var/www/room-certs/server.key
     - ${DIGICARD_PATH}:/var/www/digicard
     - ${FOOD_ASSETS_PATH}:/var/www/food-assets
     - ${NC_ASSETS_PATH}:/var/www/nc-assets

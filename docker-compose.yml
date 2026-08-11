@@ -420,6 +420,7 @@ services:
       - db_access
     volumes:
       - ./config/evc/config.xml:/home/server/config.xml
+      - ./config/evc/Private.pem:/home/server/Private.pem
       - ${EVC_FILES_PATH}/votes:/home/server/votes
 
 ####################################################################################

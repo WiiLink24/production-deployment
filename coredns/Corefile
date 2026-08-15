@@ -1,0 +1,11 @@
+import /etc/coredns/server.d/*.conf
+
+. {
+    hosts {
+        import /etc/coredns/address.d/*.conf
+        fallthrough
+    }
+    forward . 9.9.9.9 1.1.1.1
+    log
+    errors
+}

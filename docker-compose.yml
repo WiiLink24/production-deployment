@@ -53,17 +53,18 @@ services:
       - REDIS_PASSWORD=${REDIS_PASSWORD}
     command: redis-server --requirepass ${REDIS_PASSWORD}
 
-  dnsmasq:
+  coredns:
     restart: unless-stopped
-    build: dnsmasq/
+    image: coredns/coredns
     environment:
       - HOST_IP=${HOST_IP}
     ports:
       - "${HOST_IP}:${DNS_PORT}:53/udp"
       - "${HOST_IP}:${DNS_PORT}:53/tcp"
-    cap_add:
-      - NET_RAW
-      - NET_ADMIN
+    volumes:
+      - ./coredns/Corefile:/Corefile
+      - ./coredns/address.d:/etc/coredns/address.d
+      - ./coredns/server.d:/etc/coredns/server.d
   
   wireguard_client:
     restart: unless-stopped

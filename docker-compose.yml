@@ -63,8 +63,7 @@ services:
       - "${HOST_IP}:${DNS_PORT}:53/tcp"
     volumes:
       - ./coredns/Corefile:/Corefile
-      - ./coredns/address.d:/etc/coredns/address.d
-      - ./coredns/server.d:/etc/coredns/server.d
+      - ./coredns/conf.d:/etc/coredns/conf.d
   
   wireguard_client:
     restart: unless-stopped

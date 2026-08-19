@@ -3,7 +3,7 @@ server {
   listen 80;
   listen [::]:80;
 
-  root /var/www/conntest;
+  root /var/www/static/conntest;
   index index.html;
 
   location / {

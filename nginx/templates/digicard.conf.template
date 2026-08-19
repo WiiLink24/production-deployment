@@ -7,16 +7,4 @@ server {
   location / {
     proxy_pass http://digicard:5000/;
   }
-
-  location /assets/style.css {
-    alias /var/www/digicard/templates/style.css;
-  }
-
-  location /assets/ {
-    alias /var/www/digicard/assets/;
-  }
-
-  location /js {
-    alias /var/www/digicard/js;
-  }
 }

@@ -1,5 +1,5 @@
 server {
-  server_name rs.nintendo.com ms.nintendo-europe.com wiirecommend.nintendo.com.au wii.nintendo.co.jp;
+  server_name wii-links.nintendo-europe.com rs.nintendo.com ms.nintendo-europe.com wiirecommend.nintendo.com.au wii.nintendo.co.jp;
   listen 80;
   listen [::]:80;
   client_max_body_size 500M;

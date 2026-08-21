@@ -64,7 +64,7 @@ server {
 
 server {
     listen 80;
-    server_name news.wapp.wii.com news.wii.rc24.xyz news.wii.riiconnect24.com;
+    server_name news.wii.rc24.xyz news.wii.riiconnect24.com;
 
     location / {
         return 410;

@@ -1,5 +1,5 @@
 server {
-  server_name miicontestp.wii.rc24.xyz miicontestp.wapp.wii.com ${CMOC_SERVER_DOMAIN} ${CMOC_PANEL_DOMAIN};
+  server_name miicontestp.wii.rc24.xyz ${CMOC_SERVER_DOMAIN} ${CMOC_PANEL_DOMAIN};
   client_max_body_size 500M;
   listen 80;
   listen [::]:80;

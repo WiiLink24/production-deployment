@@ -61,8 +61,8 @@ services:
     environment:
       - HOST_IP=${HOST_IP}
     ports:
-      - "${HOST_IP}:${DNS_PORT}:53/udp"
-      - "${HOST_IP}:${DNS_PORT}:53/tcp"
+      - "${DNS_IP}:${DNS_PORT}:53/udp"
+      - "${DNS_IP}:${DNS_PORT}:53/tcp"
     volumes:
       - ./coredns/Corefile:/Corefile
       - ./coredns/conf.d:/etc/coredns/conf.d

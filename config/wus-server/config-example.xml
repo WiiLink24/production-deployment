@@ -1,0 +1,10 @@
+<Config>
+    <!-- Address WUS Server should bind to -->
+    <Address>0.0.0.0:8080</Address>
+
+    <!-- Email address domain -->
+    <WUSHost>rc24.xyz</WUSHost>
+
+    <!-- Gin Debug Mode -->
+    <DebugMode>true</DebugMode>
+</Config>

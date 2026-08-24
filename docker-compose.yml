@@ -261,6 +261,16 @@ services:
       - monitoring_access
     volumes:
       - ./config/wii-mail/config.xml:/app/config.xml
+  
+  wus_server:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/wus-server:latest
+    depends_on:
+      - nginx
+    networks:
+      - internal
+    volumes:
+      - ./config/wus-server/config.xml:/home/server/config.xml
 
   mail_admin:
     restart: unless-stopped

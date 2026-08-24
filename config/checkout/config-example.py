@@ -3,6 +3,9 @@ cmoc_db_url = ""
 evc_db_url = ""
 cam_server_db_url = ""
 
+redis_host = "redis"
+redis_password = ""
+
 # Used to secure the web panel.
 secret_key = ""
 

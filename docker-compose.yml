@@ -46,7 +46,6 @@ services:
   redis:
     restart: unless-stopped
     image: redis:latest
-    container_name: redis
     networks:
       - redis_access
     volumes:
@@ -500,9 +499,10 @@ services:
     networks:
       - internal
       - db_access
+      - redis_access
     volumes:
       - ./config/checkout/config.py:/home/ubuntu/config.py
-      - ./checkout-cache:/home/ubuntu/cache
+      - ${CHECKOUT_CACHE_PATH}:/home/ubuntu/cache
       - ${CAM_ORDERS_PATH}:/home/ubuntu/uploads:ro
       - ${CAM_TEMPLATES_PATH}/templates:/home/ubuntu/templates/templates:ro
       - ${CAM_TEMPLATES_PATH}/fonts:/home/ubuntu/templates/fonts:ro

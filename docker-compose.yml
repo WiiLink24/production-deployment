@@ -216,8 +216,8 @@ services:
       - db_access
       - redis_access
     volumes:
-      - ./config/cmoc-admin/config.xml:/opt/wiilink/cmoc/MiiContestChannelServer/config.xml
-      - ${CMOC_ASSETS_PATH}:/opt/wiilink/cmoc/MiiContestChannelServer/cmoc-assets
+      - ./config/cmoc-admin/config.xml:/home/server/config.xml
+      - ${CMOC_ASSETS_PATH}:/home/server/cmoc-assets
 
   cmoc_viewer:
     restart: unless-stopped

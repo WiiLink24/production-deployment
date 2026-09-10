@@ -301,22 +301,6 @@ services:
     depends_on:
       - nginx
       - wireguard_client
-      - rsshub
-
-  rsshub:
-    restart: unless-stopped
-    image: ghcr.io/diygod/rsshub:chromium-bundled
-    network_mode: service:wireguard_client
-    depends_on:
-      - wireguard_client
-    environment:
-      NODE_ENV: production
-      CACHE_TYPE:
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:1200/healthz']
-      interval: 30s
-      timeout: 10s
-      retries: 3
 
 ################################################################################
 #                               Forecast Channel                               #

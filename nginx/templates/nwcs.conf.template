@@ -1,0 +1,21 @@
+map $request_uri $region_code {
+    "~us" "E";
+    "~eu" "P";
+    "~jp" "J";
+    "~kr" "K";
+    default "E";
+}
+
+server {
+    server_name nwcs.wapp.wii.com;
+    listen 80;
+    listen [::]:80;
+
+    location / {
+        proxy_pass http://nwcs.wapp.wii.com;
+    }
+
+    location ~ /ruu/rvforestdl_(.*).enc {
+        alias /var/www/accf/overide_${region_code}.arc.wc24;
+    }
+}

@@ -1,0 +1,55 @@
+name: Validate NGINX config
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+    
+    - name: Setup fake services
+      run: |
+        sudo tee -a /etc/hosts <<'EOF'
+        127.0.0.1 account_manager
+        127.0.0.1 mail_admin
+        127.0.0.1 checkout
+        127.0.0.1 cmoc_admin
+        127.0.0.1 cmoc_viewer
+        127.0.0.1 food_server
+        127.0.0.1 cam_server
+        127.0.0.1 digicard
+        127.0.0.1 wireguard_client
+        127.0.0.1 just_eat
+        127.0.0.1 evc_web_panel
+        127.0.0.1 votes_server
+        127.0.0.1 evc_viewer
+        127.0.0.1 nintendo_channel
+        127.0.0.1 pipeline
+        127.0.0.1 room_server
+        127.0.0.1 stamp
+        127.0.0.1 wfc_web
+        127.0.0.1 wii_mail
+        127.0.0.1 wus_server
+        EOF
+    
+    - name: Generate SSL certificate
+      run: |
+        mkdir certs && \
+        openssl req -batch -newkey rsa:1024 -nodes \
+        -keyout certs/server.key -x509 \
+        -days 1 \
+        -outform PEM -out certs/server.pem
+
+    - name: Validate NGINX config
+      run: |
+        docker run --rm \
+        --net host \
+        -v ./nginx/templates:/etc/nginx/templates \
+        -v ./nginx/default.conf:/etc/nginx/conf.d/default.conf \
+        -v ./certs:/var/www/certs/room-server \
+        -v ./certs:/var/www/certs/wus-server \
+        -v ./certs:/var/www/certs/dominos \
+        nginx:alpine nginx -t

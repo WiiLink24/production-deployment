@@ -42,6 +42,7 @@ services:
     - ${KIRBY_XML_PATH}:/var/www/kirby/xml
     - ${KIRBY_EPISODES_PATH}:/var/www/kirby/episodes
     - ${KIRBY_PROMOS_PATH}:/var/www/kirby/promos
+    - ${ACDLC_DLC_PATH}:/var/www/accf
 
   redis:
     restart: unless-stopped
@@ -490,6 +491,22 @@ services:
       - ${CAM_ORDERS_PATH}:/home/ubuntu/uploads:ro
       - ${CAM_TEMPLATES_PATH}/templates:/home/ubuntu/templates/templates:ro
       - ${CAM_TEMPLATES_PATH}/fonts:/home/ubuntu/templates/fonts:ro
+
+####################################################################################
+#                    Animal Crossing: City Folk DLC Generator                      #
+####################################################################################
+  acdlc:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/acdlcpicker:latest
+    group_add:
+      - ${GID}
+    depends_on:
+      - nginx
+    volumes:
+      - ./config/acdlc/config.py:/home/server/config.py
+      - ${ACDLC_DLC_PATH}:/home/server/build
+      - ${ACDLC_PICKLES_PATH}:/home/server/pickles
+      - ${ACDLC_OVERRIDE_PATH}/templates:/home/server/override
 
 networks:
   internal:

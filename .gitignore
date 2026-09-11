@@ -5,3 +5,4 @@ config.py
 config.xml
 /config/eula.txt
 google_creds.json
+*.lic

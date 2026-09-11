@@ -16,4 +16,4 @@ jobs:
        --entrypoint "/usr/sbin/nginx" \
        -v ./nginx/templates:/etc/nginx/templates \
        -v ./nginx/default.conf:/etc/nginx/conf.d/default.conf \
-       -it nginx:alpine -t
+       nginx:alpine -t

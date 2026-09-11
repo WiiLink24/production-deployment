@@ -17,4 +17,4 @@ jobs:
       run: find . -type f -name ".env.example" -exec sh -c 'cp "$1" "$(dirname "$1")/.env"' _ {} \;
 
     - name: Validate Docker Compose
-      run: docker-compose config
+      run: docker compose config

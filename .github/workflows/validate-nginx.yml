@@ -11,7 +11,8 @@ jobs:
       uses: actions/checkout@v7
 
     - name: Validate NGINX config
-      run: docker run --rm \
+      run: |
+       docker run --rm \
        --entrypoint "/usr/sbin/nginx" \
        -v ./nginx/templates:/etc/nginx/templates \
        -v ./nginx/default.conf:/etc/nginx/conf.d/default.conf \

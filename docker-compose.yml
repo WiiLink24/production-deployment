@@ -27,8 +27,6 @@ services:
     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     - ./nginx/static:/var/www/static
     - ${ROOM_ASSETS_PATH}:/var/www/room-assets
-    - ./config/room-server/server.pem:/var/www/room-certs/server.pem
-    - ./config/room-server/server.key:/var/www/room-certs/server.key
     - ${FOOD_ASSETS_PATH}:/var/www/food-assets
     - ${NC_ASSETS_PATH}:/var/www/nc-assets
     - ${ANNOUNCEMENTS_PATH}:/var/www/announcements
@@ -36,13 +34,13 @@ services:
     - ${FORECAST_ASSETS_PATH}:/var/www/forecast
     - ${NEWS_ASSETS_PATH}:/var/www/news/v2
     - ${EVC_FILES_PATH}:/var/www/evc
-    - ${DOMINOS_CERTS_PATH}:/var/www/dominos
     - ${PATCHER_FILES_PATH}:/var/www/patcher
     - ${CFH_FILES_PATH}:/var/www/cfh
     - ${KIRBY_XML_PATH}:/var/www/kirby/xml
     - ${KIRBY_EPISODES_PATH}:/var/www/kirby/episodes
     - ${KIRBY_PROMOS_PATH}:/var/www/kirby/promos
     - ${ACDLC_DLC_PATH}:/var/www/accf
+    - ${CERTIFICATES_PATH}:/var/www/certs
 
   redis:
     restart: unless-stopped

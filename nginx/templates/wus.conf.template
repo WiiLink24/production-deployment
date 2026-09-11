@@ -2,7 +2,13 @@ server {
   server_name ${WUS_DOMAIN} wus.wapp.wii.com;
   listen 80;
   listen [::]:80;
-  client_max_body_size 10M;
+  listen 443 ssl;
+  listen [::]:443 ssl;
+
+  ssl_certificate     /var/www/certs/wus-server/server.pem;
+  ssl_certificate_key /var/www/certs/wus-server/server.key;
+  ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+  ssl_ciphers         ALL:@SECLEVEL=0;
 
   location / {
     proxy_pass http://wus_server:8080/;

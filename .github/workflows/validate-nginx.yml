@@ -38,7 +38,7 @@ jobs:
     - name: Generate SSL certificate
       run: |
         mkdir certs && \
-        openssl req -batch -newkey rsa:1 -nodes \
+        openssl req -batch -newkey rsa:1024 -nodes \
         -keyout certs/server.key -x509 \
         -days 1 \
         -outform PEM -out certs/server.pem

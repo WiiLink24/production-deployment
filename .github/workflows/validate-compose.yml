@@ -1,0 +1,20 @@
+name: Validate Docker Compose
+
+on: [push, pull_request]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+
+    - name: Setup Docker Compose
+      uses: docker/setup-compose-action@v2
+    
+    - name: Prepare .env files
+      run: find . -type f -name ".env.example" -exec sh -c 'cp "$1" "$(dirname "$1")/.env"' _ {} \;
+
+    - name: Validate Docker Compose
+      run: docker compose config

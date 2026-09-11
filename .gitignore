@@ -6,3 +6,5 @@ config.xml
 /config/eula.txt
 google_creds.json
 *.lic
+*.aes.bin
+*.pem.bin

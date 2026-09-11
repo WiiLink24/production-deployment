@@ -502,6 +502,8 @@ services:
       - nginx
     volumes:
       - ./config/acdlc/config.py:/home/server/config.py
+      - ./config/acdlc/rvforestdl.aes.bin:/home/server/rvforestdl.aes.bin
+      - ./config/acdlc/rvforestdl.pem.bin:/home/server/rvforestdl.pem.bin
       - ${ACDLC_DLC_PATH}:/home/server/build
       - ${ACDLC_PICKLES_PATH}:/home/server/pickles
       - ${ACDLC_OVERRIDE_PATH}/templates:/home/server/override

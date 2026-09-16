@@ -9,4 +9,8 @@
 
     <!-- Assets -->
     <assetsPath>/home/server/assets</assetsPath>
+    <imagesPath>/home/server/assets/images</imagesPath>
+
+    <!-- Secret for securing UNIX socket -->
+    <socketSecret></socketSecret>
 </Config>

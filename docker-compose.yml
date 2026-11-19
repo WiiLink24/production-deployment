@@ -349,7 +349,23 @@ services:
 ################################################################################
 #                              Nintendo Channel                                #
 ################################################################################
-  nintendo_channel:
+  nc:
+    restart: unless-stopped
+    image: ghcr.io/wiilink24/nintendochannel:latest
+    group_add:
+      - ${GID}
+    depends_on:
+      - nginx
+      - postgres
+    networks:
+      - internal
+      - db_access
+    volumes:
+      - /tmp:/tmp
+      - ${NC_ASSETS_PATH}:/home/server/assets
+      - ./config/nc/config.xml:/home/server/config.xml
+
+  nc_web:
     restart: unless-stopped
     image: ghcr.io/wiilink24/nintendochannelweb:latest
     group_add:
@@ -361,9 +377,9 @@ services:
       - internal
       - db_access
     volumes:
+      - /tmp:/tmp
       - ${NC_ASSETS_PATH}:/home/server/assets
-      - ./config/nc/config.xml:/home/server/config.xml
-      - ./config/nc/config.py:/home/server/config.py
+      - ./config/nc_web/config.py:/home/server/config.py
 
 ####################################################################################
 #                           Everybody Votes Channel                                #

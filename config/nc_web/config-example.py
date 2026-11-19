@@ -4,6 +4,9 @@ db_url = ""
 secret_key = ""
 debug = False
 
+# Used to secure communications to file generator
+socket_secret = "please_change_thank_you"
+
 oidc_redirect_uri = ""
 oidc_client_secrets_json = {
   "web": {

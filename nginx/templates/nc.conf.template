@@ -68,7 +68,7 @@ server {
   client_max_body_size 500M;
 
   location / {
-    proxy_pass http://nintendo_channel:5000/;
+    proxy_pass http://nc_web:5000/;
   }
 }
 
@@ -106,11 +106,11 @@ server {
   server_name nc.veeand.me dol.${NC_SERVER_BASE_DOMAIN} conf.${NC_SERVER_BASE_DOMAIN} post.${NC_SERVER_BASE_DOMAIN} entuc.wii.rc24.xyz entus.wii.rc24.xyz entup.wii.rc24.xyz;
 
   location /6/cgi-bin/config.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/config.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/config.cgi;
   }
 
   location /3/cgi-bin/config.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/config.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/config.cgi;
   }
 
   location /3/cgi-bin/accomplishment.cgi {
@@ -118,23 +118,23 @@ server {
   }
 
   location /6/cgi-bin/bookmark.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/bookmark.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/bookmark.cgi;
   }
 
   location /6/cgi-bin/getreview.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/getreview.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/getreview.cgi;
   }
 
   location /6/cgi-bin/delreview.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/delreview.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/delreview.cgi;
   }
 
   location /6/cgi-bin/review.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/review.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/review.cgi;
   }
 
   location /6/cgi-bin/accomplishment.cgi {
-    proxy_pass http://nintendo_channel:5000/6/cgi-bin/accomplishment.cgi;
+    proxy_pass http://nc_web:5000/6/cgi-bin/accomplishment.cgi;
   }
 
   location ~ /f/248/(?:.*)/1h/(?:.*)/6/VHFQ3VjDqKlZDIWAyCY0S38zIoGAoTEqvJjr8OVua0G8UwHqixKklOBAHVw9UaZmTHqOxqSaiDd5bjhSQS6hk6nkYJVdioanD5Lc8mOHkobUkblWf8KxczDUZwY84FIV/soft/(\w+)/(\w+)/(.*info) {

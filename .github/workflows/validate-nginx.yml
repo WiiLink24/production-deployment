@@ -26,7 +26,7 @@ jobs:
         127.0.0.1 evc_web_panel
         127.0.0.1 votes_server
         127.0.0.1 evc_viewer
-        127.0.0.1 nintendo_channel
+        127.0.0.1 nc_web
         127.0.0.1 pipeline
         127.0.0.1 room_server
         127.0.0.1 stamp
